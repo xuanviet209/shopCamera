@@ -11,17 +11,18 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/elegant-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slicknav.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
+    <link rel="stylesheet" href="frontend/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/assets/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -45,8 +46,14 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="{{ route('admin.login') }}" class="login-panel"><i
-                            class="fa fa-user"></i>Login</a>
+                    @if (Auth::guard('cus')->check())
+                        <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
+                                class="fa fa-user"></i>Logout</a>
+                        <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                    @else
+                        <a href="{{ route('fr.home.login') }}" class="login-panel"><i
+                                class="fa fa-user"></i>Login</a>
+                    @endif
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="frontend/assets/img/flag-1.jpg" data-imagecss="flag yt"
@@ -87,7 +94,7 @@
                         <ul class="nav-right">
                             <li class="heart-icon"><a href="#">
                                     <i class="icon_heart_alt"></i>
-                                    <span>{{ \Cart::count() }}</span>
+                                    <span></span>
                                 </a>
                             </li>
                             <li class="cart-icon"><a href="#">
@@ -97,14 +104,13 @@
                                 {{-- <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
-                                            @foreach ($products as $key => $item)
                                             <tbody>
                                                 <tr>
-                                                    <td class="si-pic"><img class="card-img-top" width="30%" height="30%"src="{{ asset('storage/images/'.$item->image) }}" alt=""></td>
+                                                    <td class="si-pic"><img class="card-img-top" width="30%" height="30%"src="{{ asset('storage/images/'.$products->image) }}" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
-                                                            <p>{{$item->price}}$</p>
-                                                            <h6>{{$item->name}}</h6>
+                                                            <p>{{$products->price}}$</p>
+                                                            <h6>{{$products->name}}</h6>
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
@@ -112,7 +118,6 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            @endforeach
                                         </table>
                                     </div>
                                     <div class="select-total">
@@ -132,25 +137,12 @@
         </div>
         <div class="nav-item">
             <div class="container">
-                <div class="nav-depart">
-                    <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>All Category</span>
-                        <ul class="depart-hover">
-                            @foreach ($categories as $key => $item)
-                                <li class="active">
-                                    <a href="{{ route('fr.view', ['id' => $item->id]) }}">{{ $item->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="{{ route('fr.home') }}">Trang chủ</a></li>
-                        <li><a href="#">Sản phẩm</a></li>
-                        <li><a href="{{ route('fr.introduce')}}">Giới thiệu</a></li>
-                        <li><a href="{{ route('fr.about') }}">Liên Hệ</a></li>
+                        <li><a href="">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.introduce') }}">Giới thiệu</a></li>
+                        <li><a href="{{ route('fr.contact') }}">Liên Hệ</a></li>
                         <li><a href="{{ route('fr.create') }}">Đăng ký</a></li>
                     </ul>
                 </nav>
@@ -158,84 +150,64 @@
             </div>
         </div>
     </header>
-    <!-- Header End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
+    <section class="">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10">
-                    <div class="breadcrumb-text">
-                        <a href="{{ route('fr.home') }}"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="breadcrumb-text">
-                        <form id="form_order" method="">
-                            @csrf
-                            <select name="sort" id="sort" class="form-control">
-                                <option value="{{ Request::url() }}?sort_by=name">--Lọc--</option>
-                                <option value="{{ Request::url() }}?sort_by=tang_dan">--Giá tăng dần--</option>
-                                <option value="{{ Request::url() }}?sort_by=giam_dan">--Giá giảm dần--</option>
-                                <option value="{{ Request::url() }}?sort_by=kytu_az">--Lọc theo tên A đến Z--
-                                </option>
-                                <option value="{{ Request::url() }}?sort_by=kytu_za">--Lọc theo tên Z đến A--
-                                </option>
-                            </select>
-                        </form>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="frontend/assets/img/slide.png" class="d-block w-100" alt="...">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Section Begin -->
-    <!-- Product Shop Section Begin -->
-    <section class="product-shop spad">
-        <div class="container">
-            <div class="row">
-                <span class="badge">Sản phẩm bạn cần tìm : {{ $category->products->count() }}</span>
-                <div class="product-list">
-                    <div class="row">
-                        @foreach ($category->products as $item)
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img class="card-img-top" width="50%" height="50%"
-                                            src="{{ asset('storage/images/' . $item->image) }}" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a>
-                                            </li>
-                                            <li class="addcart"><a
-                                                    href="{{ route('fr.add.cart', ['id' => $item->id]) }}">+ Add
-                                                    Cart</a></li>
-                                            <li class="w-icon"><a
-                                                    href="{{ route('fr.detail', ['slug' => $item->slug]) }}"><i
-                                                        class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name"></div>
-                                        <a href="#">
-                                            <h5>{{ $item->name }}</h5>
-                                        </a>
-                                        <h5>{!! $item->description !!}</h5>
-                                        <div class="product-price">
-                                            {{ number_format($item->price) }}$
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-
+            <h2 class="mt-5 font-weigt-bold text-center">VỀ CHÚNG TÔI</h2>
+            <hr>
+            <h5 class="mt-4 font-weight-bold">Công ty TNHH ViewCamera gọi tắt là V|Camera</h5>
+            <p class="mt-5">V|Camera được thành lập từ năm 2022, từ những người thực sự thấu hiểu và
+                quan tâm tới vấn đề an ninh của các gia đình, con người và xã hội…. Trải qua hơn 10 năm phát triển
+                DigiOne đã từng bước xây dựng xây dựng cho mình một chỗ đứng nhất định trong lĩnh vực giải pháp thiết bị
+                giám sát, máy chấm công, camera hành trình,.. tại thị trường Việt Nam. Hiện tại, Thế Giới Camera đã trở
+                thành đối tác phân phối và cung cấp các giải pháp an ninh đến từ các thương hiệu nổi tiếng trên thế giới
+                như: HIKVISION, EZVIZ, DAHUA, HILOOK, KBVISION, KBONE, IMOU, VIETMAP, 70MAI, TP-LINK, ZKTECO, RONALD
+                JACK ,…</p>
+            <h3 class="mt-5 mb-3">Tầm nhìn</h3>
+            <ul>
+                <li>Trở thành thương hiệu hàng đầu trong lĩnh vực camera an ninh, máy chấm công, camera hành trình tại
+                    Việt Nam</li>
+                <li>Là sự lựa chọn hàng đầu của quý khách hàng cũng như đối tác chiếc lược của các thương hiệu trong và
+                    ngoài nước.</li>
+                <li>Mang đến những sản phẩm chất lượng, dịch vụ tốt nhất tới quý khách hàng.</li>
+            </ul>
+            <h3 class="mt-5 mb-3">Sứ mệnh</h3>
+            <p>DigiOne luôn mong muốn thông qua những sản phẩm mà chúng tôi cung cấp, quý khách hàng sẽ được tận hưởng
+                một cuộc sống an toàn, có thêm nhiều thời gian dành cho những hoạt động có ích góp phần nâng cao chất
+                lượng cuộc sống.</p>
+            <h3 class="mt-5 mb-3">Giá trị cốt lỗi</h3>
+            <ul>
+                <li>Sản phẩm, chất lượng dịch vụ tốt nhất</li>
+                <li>Đội ngũ nhân viên chuyên nghiệp, sáng tạo</li>
+                <li>Uy tín là giá trị tạo nên sự bền vững của công ty</li>
+            </ul>
+            <h3 class="mt-5 mb-3">Hệ thống cửa hàng</h3>
+            <p>Với 15 cửa hàng trải dài trên toàn lãnh thổ Việt Nam, V|Camera hy vọng tất cả các khách hàng khi
+                đến với chúng tôi đều được trực tiếp trải nghiệm tất cả các sản phẩm</p>
+            <h3 class="mt-5 mb-3">Lý do tại sao chọn V|Camera</h3>
+            <ul>
+                <li>Hỗ trợ tư vấn, khảo sát lắp đặt miễn phí. Chỉ cần cho V|Camera biết bạn cần gì, chúng tôi sẽ
+                    tư vấn cho bạn sản phẩm phù hợp nhất.</li>
+                <li>Trải nghiệm trực tiếp tất cả các sản phẩm tại các cửa hàng trong hệ thống V|Camera</li>
+                <li>Giao hàng miễn phí toàn quốc</li>
+                <li>Hỗ trợ đổi mới trong thời gian quy định của từng sản phẩm</li>
+                <li>Hỗ trợ bảo hành tại nhà nếu gặp vấn đề trong thời gian sử dụng</li>
+            </ul>
+            <h3 class="mt-5 mb-3">Cam kết đến từ V|Camera</h3>
+            <p>Nếu vì bất cứ lý do gì bạn không hài lòng khi mua hàng tại V|Camera hãy liên hệ hotline
+                0971046025. Chúng tôi luôn luôn lắng nghe và luôn muốn bạn đến với V|Camera với sự tự tin biết
+                rằng chúng tôi sẽ hỗ trợ bạn nếu có một vấn đề với hàng hóa đã mua.</p>
+            <h3 class="mt-5 mb-3">Lời cảm ơn</h3>
+            <p>V|Camera chân thành cảm ơn và hy vọng bạn sẽ ghé thăm các cửa hàng của chúng tôi, nếu bạn đang ở
+                xa hoặc không tiện đến mua hàng tại cửa hàng hãy gọi cho chúng tôi để được hướng dẫn mua hàng từ xa.</p>
         </div>
     </section>
     <!-- Product Shop Section End -->
@@ -284,7 +256,7 @@
                             <a href="#"><img src="frontend/assets/img/footer-logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Address: 18/335 Xuân Đỉnh Bắc Từ Liêm Hà Nội</li>
                             <li>Phone: 0971.046.025</li>
                             <li>Email: vietd8k11@gmail.com</li>
                         </ul>
@@ -302,7 +274,7 @@
                         <ul>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('fr.contact') }}">Contact</a></li>
                             <li><a href="#">Serivius</a></li>
                         </ul>
                     </div>
@@ -311,7 +283,7 @@
                     <div class="footer-widget">
                         <h5>My Account</h5>
                         <ul>
-                            <li><a href="#">My Account</a></li>
+                            <li><a href="{{ route('admin.login') }}">My Account</a></li>
                             <li><a href="#">Contact</a></li>
                             <li><a href="#">Shopping Cart</a></li>
                             <li><a href="#">Shop</a></li>
@@ -354,40 +326,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="{{ asset('frontend/assets/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery.zoom.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery.dd.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#sort').on('change', function() {
-                var url = $(this).val();
-                //alert(url);
-                if (url) {
-                    window.location = url;
-                }
-                return false;
-            });
-
-            $('.addcart').click(function(e) {
-                //    e.preventDefault();
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Sản phẩm đã được thêm vào giỏ hàng',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            });
-        });
-    </script>
-</body>
-
-</html>
+    <script src="frontend/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="frontend/assets/js/bootstrap.min.js"></script>
+    <script src="frontend/assets/js/jquery-ui.min.js"></script>
+    <script src="frontend/assets/js/jquery.countdown.min.js"></script>
+    <script src="frontend/assets/js/jquery.nice-select.min.js"></script>
+    <script src="frontend/assets/js/jquery.zoom.min.js"></script>
+    <script src="frontend/assets/js/jquery.dd.min.js"></script>
+    <script src="frontend/assets/js/jquery.slicknav.js"></script>
+    <script src="frontend/assets/js/owl.carousel.min.js"></script>
+    <script src="frontend/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>

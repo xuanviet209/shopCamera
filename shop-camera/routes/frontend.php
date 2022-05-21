@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CreateController;
+use App\Http\Controllers\Frontend\IntroduceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ use App\Http\Controllers\Frontend\CreateController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('about',[AboutController::class,'index'])->name('about');
+// Route::get('about',[AboutController::class,'index'])->name('about');
 
 //cart
 Route::get('cart',[CartController::class,'index'])->name('cart');
@@ -49,3 +50,8 @@ Route::post('/vnpay_payment',[CheckoutController::class,'vnpay_payment']);
 Route::get('create',[CreateController::class,'form'])->name('create');
 Route::post('create',[CreateController::class,'success'])->name('create');
 
+//giới thiệu
+Route::get('introduce',[IntroduceController::class,'index'])->name('introduce');
+
+//about
+Route::get('products',[AboutController::class,'index'])->name('about');

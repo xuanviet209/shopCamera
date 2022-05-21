@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\User;
+use App\Models\Rating;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mail;
@@ -52,7 +53,7 @@ class HomeController extends Controller
     Auth::guard('cus')->logout();
     return redirect()->route('fr.home');
   }
-
+  
   public function login()
   {
     return view('frontend.home.login');

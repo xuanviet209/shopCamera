@@ -152,9 +152,9 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="#">Trang chủ</a></li>
-                        <li><a href="#">Hãng</a></li>
-                        <li><a href="#">Tin tức công nghệ</a></li>
+                        <li><a href="{{ route('fr.home') }}">Trang chủ</a></li>
+                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.introduce')}}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.contact') }}">Liên Hệ</a></li>
                         <li><a href="{{ route('fr.create') }}">Đăng ký</a></li>
                     </ul>
@@ -243,8 +243,8 @@
                     </div>
                 </div>
             </div>
+            {{ $products->links() }}
         </div>
-        {{ $products->links() }}
         </div>
     </section>
     <!-- Product Shop Section End -->
@@ -399,5 +399,36 @@
         });
     </script>
 </body>
-
+<style>
+.pagination {
+display: inline-block;
+margin-top: 10px;
+float: right
+}
+.pagination li {
+width: 36px;
+display: block;
+float: left;
+color: black;
+padding: 5px 5px;
+list-style: none;
+text-decoration: none;
+transition: background-color .3s;
+background: #FFF;
+border: 1px solid #ddd;
+border-radius: 5px;
+margin: 0 4px;
+cursor: pointer;
+text-align: center;
+font: 400 .9em Arial, Helvetica, sans-serif;
+}
+.pagination li a { color: #333; text-decoration: none; display: block; width: 100%; height: 100%; }
+.pagination li span { color: #333; font-size: .9em; }
+.pagination li.active {
+/* background-color: #4CAF50;
+color: white;
+border: 1px solid #4CAF50; */
+}
+.pagination li:hover:not(.active) {background-color: #ddd;}
+</style>
 </html>
