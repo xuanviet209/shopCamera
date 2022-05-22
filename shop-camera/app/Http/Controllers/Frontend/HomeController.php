@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\User;
 use App\Models\Rating;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mail;
@@ -113,5 +114,28 @@ class HomeController extends Controller
       'products' => $products
       // 'category'=> $category
     ]);
+  }
+  
+  public function load_comment(Request $request)
+  {
+    $id = $request->id;
+    $comment = Comment::where('comment_products_id',$id)->get();
+    $output = '';
+    foreach($comment as $key => $item){
+        $output.= '
+          <div class="row style_comment">
+            <div class="col-md-3">
+                <img width="60%" src="frontend/assets/img/avarta.png" alt="">
+            </div>
+            <div class="col-md-9">
+                <p style="color:green;">@'.$item->comment_name.'</p>
+                <p style="color:blue;">'.$item->comment_date.'</p>
+                <p>'.$item->comment.'</p>
+            </div>
+          </div>
+          <p></p>
+        ';
+    }
+    echo $output;
   }
 }

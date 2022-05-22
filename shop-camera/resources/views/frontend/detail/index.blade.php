@@ -200,8 +200,9 @@
                     <div class="wrapper row">
                         <div class="preview col-md-6">
                             <div class="preview-pic tab-content">
-                                <div class="tab-pane active" id="pic-1"><img src="{{ asset('storage/images/' . $products->image) }}"
-                                    class="img-fluid rounded-start" alt="...">
+                                <div class="tab-pane active" id="pic-1"><img
+                                        src="{{ asset('storage/images/' . $products->image) }}"
+                                        class="img-fluid rounded-start" alt="...">
                                 </div>
                                 <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" />
                                 </div>
@@ -239,10 +240,10 @@
                                 <span class="review-no">41 reviews</span>
                             </div> --}}
                             <div class="rating">
-                               
+
                             </div>
                             <p class="product-description">{!! $products->description !!}</p>
-                            <h4 class="price">current price: <span>${{  $products->price  }}</span></h4>
+                            <h4 class="price">current price: <span>${{ $products->price }}</span></h4>
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87
                                     votes)</strong></p>
                             {{-- <h5 class="sizes">Tính năng:
@@ -258,7 +259,8 @@
                                 <span class="color blue"></span>
                             </h5> --}}
                             <div class="action">
-                                <button class="add-to-cart btn btn-default" type="button"><a href="{{ route('fr.cart') }}">add to cart</a></button>
+                                <button class="add-to-cart btn btn-default" type="button"><a
+                                        href="{{ route('fr.cart') }}">add to cart</a></button>
                                 <button class="like btn btn-default" type="button"><span
                                         class="fa fa-heart"></span></button>
                             </div>
@@ -266,9 +268,37 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <h5 class="card-header" style="color:#0076ad;">Đánh giá</h5>
+                <div class="card-body">
+                <form action="">
+                    @csrf
+                    <input type="hidden" name="comment_products_id" class="comment_products_id" value="{{ $products->id }}">
+                    <div id="comment_show"></div>
+                    {{-- <div class="row style_comment">
+                        <div class="col-md-3">
+                            <input type="hidden" name="comment_products_id" class="comment_products_id" value="{{ $products->id }}">
+                            <img width="60%" src="frontend/assets/img/avarta.png" alt="">
+                        </div>
+                        <div class="col-md-9">
+                            <p style="color:green;">@XuanViet</p>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                            Laborum nobis, aliquid quas tenetur animi enim beatae labore 
+                            temporibus modi ad eum velit ducimus voluptas quo officia minima quaerat. 
+                            Sed, recusandae?</p>
+                        </div>
+                    </div> --}}
+                </form>
+                     <div class="form-floating pb-3">
+                        <p>Viết đánh giá của bạn vào đây</p>
+                        <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+                     </div>
+                  <a href="#" class="btn btn-primary">Submit</a>
+             </div>
         </div>
     </section>
     <!-- Detail Product -->
+
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">
@@ -408,12 +438,34 @@
                 return false;
             });
         });
+        
+        $(document).ready(function(){
+            load_comment();
+            
+            function load_comment(){
+                var id = $('.comment_products_id').val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ url('/load-comment') }}",
+                    method:"POST",
+                    data:{id:id,_token:_token},
+                    success:function(data){
+                        $('#comment_show').html(data);
+                    }
+                });
+            }
+        });
     </script>
 </body>
 
 </html>
 
 <style>
+    .style_comment {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #ddd;
+    }
     body {
         font-family: 'open sans';
         overflow-x: hidden;

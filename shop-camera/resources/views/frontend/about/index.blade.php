@@ -207,16 +207,21 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach ($categories as $key => $item)
-                                <li class="list-group-item">{{ $item->name }}</li>
+                                <li class="list-group-item">{{ $item->name }} 
+                                    <span class="badge badge-pill badge-primary">New</span>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="card mt-5" style="width: 18rem;">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header" style="color: blue">
+                            Cam kết của chúng tôi
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">Chúng tôi chỉ bán hàng chính hãng và đúng giá, vui lòng tham
+                                khảo kỹ trước khi đặt mua.</li>
+                            <li class="list-group-item">Mọi nhu cầu cần giải đáp, vui lòng liên hệ trực tiếp hotline:
+                                0971.046.025</li>
                         </ul>
                     </div>
                 </div>
@@ -225,24 +230,19 @@
                         @foreach ($products as $key => $item)
                             <div class="col-12 col-sm-12 col-md-4 ">
                                 <div class="card" style="">
-                                    <img class="card-img-top" width="10%" height="10%"
-                                    src="{{ asset('storage/images/' . $item->image) }}" alt="">
+                                    <img id="zoom" class="card-img-top" width="10%" height="10%"
+                                        src="{{ asset('storage/images/' . $item->image) }}" alt="">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <a href="">
-                                                Item One
+
                                             </a>
                                         </h5>
                                         <p class="card-text font-weight-bold">{{ $item->name }}</p>
-                                        <p class="card-text ">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit. Amet numquam aspernatur!</p>
+                                        <p class="card-text "></p>
                                     </div>
                                     <div class="card-footer">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                        {{ number_format($item->price) }} $
                                     </div>
                                 </div>
                             </div>
@@ -406,3 +406,18 @@
 </body>
 
 </html>
+<style>
+    #zoom {
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    }
+    #zoom:hover {
+    transform: scale(1.5,1.5);
+    -webkit-transform: scale(1.5,1.5);
+    -moz-transform: scale(1.5,1.5);
+    -o-transform: scale(1.5,1.5);
+    -ms-transform: scale(1.5,1.5);
+    }
+    </style>
