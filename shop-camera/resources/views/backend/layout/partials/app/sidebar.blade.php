@@ -23,6 +23,10 @@
                     <div class="sb-nav-link-icon"><i class="fab fa-product-hunt"></i></div>
                     Mã giảm giá
                 </a>
+                <a class="nav-link" href="{{ route('admin.comment') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                    Bình luận
+                </a>
                 <a class="nav-link" href="{{ route('admin.user') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     User

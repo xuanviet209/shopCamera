@@ -271,11 +271,12 @@
             <div class="card">
                 <h5 class="card-header" style="color:#0076ad;">Đánh giá</h5>
                 <div class="card-body">
-                <form action="">
-                    @csrf
-                    <input type="hidden" name="comment_products_id" class="comment_products_id" value="{{ $products->id }}">
-                    <div id="comment_show"></div>
-                    {{-- <div class="row style_comment">
+                    <form action="">
+                        @csrf
+                        <input type="hidden" name="comment_products_id" class="comment_products_id"
+                            value="{{ $products->id }}">
+                        <div id="comment_show"></div>
+                        {{-- <div class="row style_comment">
                         <div class="col-md-3">
                             <input type="hidden" name="comment_products_id" class="comment_products_id" value="{{ $products->id }}">
                             <img width="60%" src="frontend/assets/img/avarta.png" alt="">
@@ -288,14 +289,21 @@
                             Sed, recusandae?</p>
                         </div>
                     </div> --}}
-                </form>
-                     <div class="form-floating pb-3">
-                        <p>Viết đánh giá của bạn vào đây</p>
-                        <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
-                     </div>
-                  <a href="#" class="btn btn-primary">Submit</a>
-             </div>
-        </div>
+                    </form>
+                    <form action="">
+                        <div class="form-floating pb-3">
+                            <p>Viết bình luận của bạn vào đây</p>
+                            <input class="form-control comment_name" type="text" style="width:40%"
+                                placeholder="Tên bình luận">
+                            <p></p>
+                            <textarea class="form-control comment_content" name="comment" style="height: 100px"
+                                placeholder="Nội dung bình luận"></textarea>
+                            <div id="notify_comment"></div>
+                        </div>
+                        <button type="button" class="btn btn-primary send-comment">Thêm bình luận</button>
+                    </form>
+                </div>
+            </div>
     </section>
     <!-- Detail Product -->
 
@@ -438,22 +446,49 @@
                 return false;
             });
         });
-        
-        $(document).ready(function(){
+
+        $(document).ready(function() {
             load_comment();
-            
-            function load_comment(){
+
+            function load_comment() {
                 var id = $('.comment_products_id').val();
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
-                    url:"{{ url('/load-comment') }}",
-                    method:"POST",
-                    data:{id:id,_token:_token},
-                    success:function(data){
+                    url: "{{ url('/load-comment') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: _token
+                    },
+                    success: function(data) {
                         $('#comment_show').html(data);
                     }
                 });
             }
+            $('.send-comment').click(function() {
+                var id = $('.comment_products_id').val();
+                var comment_name = $('.comment_name').val();
+                var comment_content = $('.comment_content').val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ url('/send-comment') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: _token,
+                        comment_name: comment_name,
+                        comment_content: comment_content
+                    },
+                    success: function(data) {
+                        $('#notify_comment').html('<span class="text text-success">Thêm bình luận thành công , Bình luận đang chờ duyệt</span>')
+                        load_comment();
+                        $('#notify_comment').fadeOut(9000);
+                        $('.comment_name').val('');
+                        $('.comment_content').val('');
+                    }
+                });
+            });
+            
         });
     </script>
 </body>
@@ -466,6 +501,7 @@
         border-radius: 10px;
         background: #ddd;
     }
+
     body {
         font-family: 'open sans';
         overflow-x: hidden;

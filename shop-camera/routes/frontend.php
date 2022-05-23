@@ -41,6 +41,8 @@ Route::get('home_login',[HomeController::class,'login'])->name('home.login');
 Route::post('home_login',[HomeController::class,'postLogin'])->name('home.login');
 
 Route::post('/load-comment',[HomeController::class,'load_comment']);
+Route::post('/send-comment',[HomeController::class,'send_comment']);
+
 //checkout
 Route::get('checkout',[CheckoutController::class,'form'])->name('checkout');
 Route::post('checkout',[CheckoutController::class,'submitForm'])->name('checkout');

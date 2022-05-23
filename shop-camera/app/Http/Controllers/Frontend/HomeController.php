@@ -119,7 +119,7 @@ class HomeController extends Controller
   public function load_comment(Request $request)
   {
     $id = $request->id;
-    $comment = Comment::where('comment_products_id',$id)->get();
+    $comment = Comment::where('comment_products_id',$id)->where('comment_status',0)->get();
     $output = '';
     foreach($comment as $key => $item){
         $output.= '
@@ -137,5 +137,18 @@ class HomeController extends Controller
         ';
     }
     echo $output;
+  }
+  
+  public function send_comment(Request $request)
+  {
+    $id = $request->id;
+    $comment_name = $request->comment_name;
+    $comment_content = $request->comment_content;
+    $comment = new Comment();
+    $comment->comment_products_id = $id;
+    $comment->comment_name = $comment_name;
+    $comment->comment = $comment_content;
+    $comment->comment_status = 1;
+    $comment->save();
   }
 }
