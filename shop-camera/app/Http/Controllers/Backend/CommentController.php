@@ -27,6 +27,7 @@ class CommentController extends Controller
     public function replyComment(Request $request)
     {
         $data = $request->all();
+        // $comment = Comment::find($data['comment_id']);
         $comment = new Comment();
         $comment->comment = $data['comment'];
         $comment->comment_products_id = $data['comment_products_id'];

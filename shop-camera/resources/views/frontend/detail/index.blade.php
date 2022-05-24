@@ -271,24 +271,11 @@
             <div class="card">
                 <h5 class="card-header" style="color:#0076ad;">Đánh giá</h5>
                 <div class="card-body">
-                    <form action="">
+                    <form action="" >
                         @csrf
                         <input type="hidden" name="comment_products_id" class="comment_products_id"
                             value="{{ $products->id }}">
                         <div id="comment_show"></div>
-                        {{-- <div class="row style_comment">
-                        <div class="col-md-3">
-                            <input type="hidden" name="comment_products_id" class="comment_products_id" value="{{ $products->id }}">
-                            <img width="60%" src="frontend/assets/img/avarta.png" alt="">
-                        </div>
-                        <div class="col-md-9">
-                            <p style="color:green;">@XuanViet</p>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                            Laborum nobis, aliquid quas tenetur animi enim beatae labore 
-                            temporibus modi ad eum velit ducimus voluptas quo officia minima quaerat. 
-                            Sed, recusandae?</p>
-                        </div>
-                    </div> --}}
                     </form>
                     <form action="">
                         <div class="form-floating pb-3">
@@ -449,7 +436,6 @@
 
         $(document).ready(function() {
             load_comment();
-
             function load_comment() {
                 var id = $('.comment_products_id').val();
                 var _token = $('input[name="_token"]').val();
@@ -488,7 +474,6 @@
                     }
                 });
             });
-            
         });
     </script>
 </body>

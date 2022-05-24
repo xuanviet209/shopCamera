@@ -115,7 +115,7 @@ class HomeController extends Controller
       // 'category'=> $category
     ]);
   }
-  
+
   public function load_comment(Request $request)
   {
     $id = $request->id;
@@ -133,8 +133,24 @@ class HomeController extends Controller
                 <p>'.$item->comment.'</p>
             </div>
           </div>
-          <p></p>
-        ';
+          <p></p>';
+          
+          foreach($comment as $key => $value) {
+            if($value->comment_parent_comment == $item->comment_id ){
+              $output.='
+                <div class="row style_comment" style="margin: 5px 40px; background:white">
+                  <div class="col-md-3">
+                      <img width="30%" src="frontend/assets/img/VCamera.png" alt="">
+                  </div>
+                  <div class="col-md-9">
+                      <p style="color:blue;">@VCamera</p>
+                      <p style="color:black;">'.$value->comment.'</p>
+                      <p></p>
+                  </div>
+                </div>
+                <p></p>';
+            }
+          }
     }
     echo $output;
   }

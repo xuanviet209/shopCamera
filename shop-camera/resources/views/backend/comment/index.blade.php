@@ -32,11 +32,18 @@
                             </td>
                             <td>{{ $item->comment_name }}</td>
                             <td>{{ $item->comment }}
+                                <ul>
+                                    @foreach($comment as $key => $value)
+                                        @if($value->comment_parent_comment == $item->comment_id)
+                                            <li>{{ $value->comment }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
                                 @if ($item->comment_status == 0)
                                     <br>
-                                    <textarea class="reply_comment" rows="3"></textarea>
+                                    <textarea class="reply_comment_{{$item->comment_id }}" rows="3"></textarea>
                                     <br><button class="btn btn-info btn-reply-comment" data-comment_id="{{$item->comment_id }}" 
-                                    id="{{ $item->comment_products_id }}">Trả lời</button>
+                                    data-products_id="{{ $item->comment_products_id }}">Trả lời</button>
                                 @endif
                             </td>
                             <td>{{ $item->comment_date }}</td>
@@ -47,7 +54,7 @@
                             </td>
                             <td>
                                 <button id="" class="btn btn-danger" onclick="confirm('Bạn có muốn xóa mã này không !');
-                              "><i class="fas fa-trash"></i></button>
+                            "><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -88,25 +95,26 @@
         });
 
         $('.btn-reply-comment').click(function() {
-            var comment = $('.reply_comment').val();
             var comment_id = $(this).data('comment_id');
-            var comment_products_id = $(this).attr('id');
-            alert(comment);
-            // $.ajax({
-            //     url: "{{ url('admin/reply-comment') }}",
-            //     method: "POST",
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     },
-            //     data: {
-            //         comment: comment,
-            //         comment_id: comment_id,
-            //         comment_products_id: comment_products_id
-            //     },
-            //     success: function(data) {
-            //         $('#notify_comment').html('<span class="text text-alert">Trả lời bình luận thành công</span>');
-            //     }
-            // });
+            var comment = $('.reply_comment_'+comment_id).val();
+            
+            var comment_products_id = $(this).data('products_id');
+            // alert(comment_products_id);
+            $.ajax({
+                url: "{{ url('admin/reply-comment') }}",
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    comment: comment,
+                    comment_id: comment_id,
+                    comment_products_id: comment_products_id
+                },
+                success: function(data) {
+                    $('#notify_comment').html('<span class="text text-danger">Trả lời bình luận thành công</span>');
+                }
+            });
         });
     </script>
 @endpush
