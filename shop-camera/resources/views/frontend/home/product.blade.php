@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="#">
+                            <a href="{{ route('fr.home') }}">
                                 <img src="frontend/assets/img/text.png" alt="">
                             </a>
                         </div>
@@ -135,7 +135,7 @@
                 <div class="nav-depart">
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
-                        <span>All Category</span>
+                        <span>Danh mục</span>
                         <ul class="depart-hover">
                             @foreach ($categories as $key => $item)
                                 <li class="active">
@@ -148,7 +148,7 @@
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="{{ route('fr.home') }}">Trang chủ</a></li>
-                        <li><a href="#">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
                         <li><a href="{{ route('fr.introduce')}}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.about') }}">Liên Hệ</a></li>
                         <li><a href="{{ route('fr.create') }}">Đăng ký</a></li>

@@ -1,6 +1,7 @@
 @extends('backend.layout.app')
 
 @section('content_app')
+@section('title', 'Coupon page')
 <div class="row">
     <div class="col-xl-12 col-md-12">
     <h5 id="title_category">Mã giảm giá</h5>

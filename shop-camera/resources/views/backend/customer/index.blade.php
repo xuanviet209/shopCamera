@@ -1,6 +1,7 @@
 @extends('backend.layout.app')
 
 @section('content_app')
+@section('title', 'Customer Page')
     <div class="row">
         <div class="col-xl-12 col-md-12">
             <div class="col-md-5">

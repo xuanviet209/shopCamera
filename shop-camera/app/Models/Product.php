@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class);
     }
+  
+    public function detail()
+    {
+        return $this->belongsTo(OrderDetail::class);
+    }
 }

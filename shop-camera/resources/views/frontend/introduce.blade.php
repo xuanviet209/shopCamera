@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="#">
+                            <a href="{{ route('fr.home') }}">
                                 <img src="frontend/assets/img/text.png" alt="">
                             </a>
                         </div>

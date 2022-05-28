@@ -212,6 +212,5 @@ class CheckoutController extends Controller
     } else {
       echo json_encode($returnData);
     }
-    // vui lòng tham khảo thêm tại code demo
   }
 }

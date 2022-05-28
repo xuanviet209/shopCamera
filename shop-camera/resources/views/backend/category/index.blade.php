@@ -1,9 +1,9 @@
 @extends('backend.layout.app')
 
 {{--truyền title--}}
-{{-- @section('title','Category page')
-@section('breadcrumb_title','Category') 
-@section('breadcrumb_title_sub','List Category')  --}}
+@section('title','Category page')
+{{-- @section('breadcrumb_title','Category') 
+@section('breadcrumb_title_sub','List Category') --}}
 
 @section('content_app')
 <div class="row">

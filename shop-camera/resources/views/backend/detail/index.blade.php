@@ -23,6 +23,7 @@
                     <th scope="col">Giá</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Ngày mua</th>
+                    <th>123</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->product}}</td>
                     </tr>
                 @endforeach
             </tbody>

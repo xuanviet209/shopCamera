@@ -167,4 +167,6 @@ class HomeController extends Controller
     $comment->comment_status = 1;
     $comment->save();
   }
+  
+  
 }

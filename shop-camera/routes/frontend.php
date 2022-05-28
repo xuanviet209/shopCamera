@@ -27,7 +27,7 @@ Route::get('cart',[CartController::class,'index'])->name('cart');
 Route::get('add-to-cart/{id}',[CartController::class,'addCart'])->name('add.cart');
 Route::get('remove-item-cart/{id}',[CartController::class,'removeCart'])->name('remove.cart');
 Route::post('update-cart',[CartController::class,'updateCart'])->name('update.cart');
-
+Route::get('/hover-cart',[CartController::class,'hoverCart']);
 //home
 Route::get('category/{id}',[HomeController::class,'view'])->name('view');
 

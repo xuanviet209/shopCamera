@@ -1,8 +1,8 @@
 @extends('backend.layout.app')
 
 {{-- truyền title --}}
-{{-- @section('title', 'Brand page')
-@section('breadcrumb_title', 'Brand') 
+@section('title', 'Brand page')
+{{-- @section('breadcrumb_title', 'Brand') 
 @section('breadcrumb_title_sub', 'List Brand') --}}
 
 @section('content_app')

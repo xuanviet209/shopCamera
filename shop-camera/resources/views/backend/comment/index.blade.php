@@ -1,6 +1,7 @@
 @extends('backend.layout.app')
 
 @section('content_app')
+@section('title', 'Comment page')
     <div class="row">
         <div class="col-xl-12 col-md-12">
             <h5 id="title_category">Bình luận</h5>
@@ -93,11 +94,10 @@
                 }
             });
         });
-
+        
         $('.btn-reply-comment').click(function() {
             var comment_id = $(this).data('comment_id');
             var comment = $('.reply_comment_'+comment_id).val();
-            
             var comment_products_id = $(this).data('products_id');
             // alert(comment_products_id);
             $.ajax({
@@ -112,6 +112,7 @@
                     comment_products_id: comment_products_id
                 },
                 success: function(data) {
+                    $('.reply_comment_'+comment_id).val('');
                     $('#notify_comment').html('<span class="text text-danger">Trả lời bình luận thành công</span>');
                 }
             });

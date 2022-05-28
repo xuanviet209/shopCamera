@@ -1,10 +1,10 @@
 @extends('backend.layout.app')
 
 {{--truyền title--}}
-{{-- @section('title','Product page')
-@section('breadcrumb_title','Product') 
-@section('breadcrumb_title_sub','List Product') 
-   --}}
+@section('title','Product page')
+{{-- @section('breadcrumb_title','Product') 
+@section('breadcrumb_title_sub','List Product')  --}}
+  
 @section('content_app')
   <div class="row">
     <div class="col-xl-12 col-md-12">

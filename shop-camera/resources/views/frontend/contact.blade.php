@@ -38,8 +38,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
-                        <a href="{{ route('fr.home') }}"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
+                        <a href="{{ route('fr.home') }}"><i class="fa fa-home"></i> Trang chủ</a>
+                        <a href="{{ route('fr.about') }}">Sản phẩm</a>
                         <span>Thông tin liên hệ</span>
                     </div>
                 </div>

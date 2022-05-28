@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -22,10 +23,13 @@ class DetailController extends Controller
     }
     
     public function index()
-    {
+    {   
         $listDetail = OrderDetail::paginate(config("constant.paginate"));
+        $product = Product::get();
+        // $listDetail = OrderDetail::with('product')->paginate(config("constant.paginate"));
         return view('backend.detail.index',[
-            'order_detail' => $listDetail
+            'order_detail' => $listDetail,
+            'product' => $product
         ]);
     }
 }

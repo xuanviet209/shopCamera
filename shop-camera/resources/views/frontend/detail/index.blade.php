@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="#">
+                            <a href="{{ route('fr.home') }}">
                                 <img src="frontend/assets/img/text.png" alt="">
                             </a>
                         </div>
@@ -148,9 +148,9 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="#">Trang chủ</a></li>
-                        <li><a href="#">Hãng</a></li>
-                        <li><a href="#">Tin tức công nghệ</a></li>
+                        <li><a href="{{route('fr.home')}}">Trang chủ</a></li>
+                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.introduce') }}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.contact') }}">Liên hệ</a></li>
                         <li><a href="{{ route('fr.about') }}">Đăng ký</a></li>
                     </ul>
@@ -229,7 +229,7 @@
                         </div>
                         <div class="details col-md-6">
                             <h3 class="product-title">{{ $products->name }}</h3>
-                            {{-- <div class="rating">
+                            <div class="rating">
                                 <div class="stars">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -238,10 +238,12 @@
                                     <span class="fa fa-star"></span>
                                 </div>
                                 <span class="review-no">41 reviews</span>
-                            </div> --}}
-                            <div class="rating">
-
                             </div>
+                            {{-- <div class="rating">
+                                <ul class="stars">
+                                    <li class="fa fa-star"></li>
+                                </ul>
+                            </div> --}}
                             <p class="product-description">{!! $products->description !!}</p>
                             <h4 class="price">current price: <span>${{ $products->price }}</span></h4>
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87
@@ -264,12 +266,13 @@
                                 <button class="like btn btn-default" type="button"><span
                                         class="fa fa-heart"></span></button>
                             </div>
+                            <div class="zalo-share-button mt-3" data-href="" data-oaid="1958423497335534901" data-layout="1" data-color="blue" data-share-type="2" data-customize="false"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card">
-                <h5 class="card-header" style="color:#0076ad;">Đánh giá</h5>
+                <h5 class="card-header" style="color:#0076ad;">Bình luận & Đánh giá</h5>
                 <div class="card-body">
                     <form action="" >
                         @csrf
@@ -421,7 +424,7 @@
     <script src="frontend/assets/js/main.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sort').on('change', function() {

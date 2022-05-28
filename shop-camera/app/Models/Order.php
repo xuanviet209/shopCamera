@@ -18,6 +18,6 @@ class Order extends Model
     
     public function cus()
     {
-        return $this->hasOne(Customer::class,'id','customer_id');
+        return $this->hasOne(Customer::class,'id','customer_id','name');
     }
 }

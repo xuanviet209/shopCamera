@@ -1,8 +1,8 @@
 @extends('backend.layout.app')
 
-@section('title', 'Category page')
-@section('breadcrumd_title', 'Category')
-@section('breadcrumd_title_sub', 'Add Category Data')
+@section('title', 'Coupon Page')
+{{-- @section('breadcrumd_title', 'Category')
+@section('breadcrumd_title_sub', 'Add Category Data') --}}
 
 @section('content_app')
 <div class="row">

@@ -74,4 +74,9 @@ class CartController extends Controller
       return redirect()->route('fr.home')->withErrors('Can not to cart');
     }
   }
+  
+  public function hoverCart()
+  {
+    
+  }
 }
