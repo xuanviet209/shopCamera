@@ -104,6 +104,7 @@ class HomeController extends Controller
       $mail->from($request->email);
       $mail->subject('Thông tin liên hệ');
     });
+    return redirect()->back()->with('message', 'Gửi thông tin liên hệ thành công');
   }
 
   public function detailProduct(Request $request)

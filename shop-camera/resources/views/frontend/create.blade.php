@@ -44,6 +44,11 @@
                     </div>
                 </div>
             </div>
+            @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         </div>
     </div>
      <section class="py-5">
@@ -116,7 +121,10 @@
     <script src="frontend/assets/js/owl.carousel.min.js"></script>
     <script src="frontend/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
-     <style>
+    <div class="zalo-chat-widget" data-oaid="1958423497335534901" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+        data-autopopup="0" data-width="300" data-height="300"></div>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+    <style>
         h1 {
             text-align: center;
             font-size: 42px;

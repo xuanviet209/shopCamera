@@ -101,7 +101,7 @@
                                     <i class="icon_bag_alt"></i>
                                     <span>{{ \Cart::count() }}</span>
                                 </a>
-                                <div class="cart-hover">
+                                {{-- <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
                                             <tbody>
@@ -128,7 +128,7 @@
                                         <a href="" class="primary-btn view-card">VIEW CARD</a>
                                         <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </li>
                         </ul>
                     </div>
@@ -517,19 +517,19 @@
             }
         }
         
-        hover_cart();
-        function hover_cart(){
-            $('.cart-hover').click(function(e) {
-                //    e.preventDefault();
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Sản phẩm đã được thêm vào giỏ hàng',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            });
-        }
+        // hover_cart();
+        // function hover_cart(){
+        //     $('.cart-hover').click(function(e) {
+        //         //    e.preventDefault();
+        //         Swal.fire({
+        //             position: 'center',
+        //             icon: 'success',
+        //             title: 'Sản phẩm đã được thêm vào giỏ hàng',
+        //             showConfirmButton: false,
+        //             timer: 3000
+        //         });
+        //     });
+        // }
     </script>
 </body>
 <style>

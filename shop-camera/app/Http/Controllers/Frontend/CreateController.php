@@ -23,5 +23,6 @@ class CreateController extends Controller
           'password'=> bcrypt($request->password),
           'address' => $request->address
       ]);
+      return redirect()->back()->with('message', 'Đăng ký thông tin thành công');
     }
 }

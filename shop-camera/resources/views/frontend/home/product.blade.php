@@ -364,7 +364,10 @@
     <script src="{{ asset('frontend/assets/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-
+    <div class="zalo-chat-widget" data-oaid="1958423497335534901" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
+        data-autopopup="0" data-width="300" data-height="300"></div>
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+    
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sort').on('change', function() {

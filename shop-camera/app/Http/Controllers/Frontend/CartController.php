@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController as Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Customer;
+use Illuminate\Contracts\Session\Session;
 
 class CartController extends Controller
 {
@@ -75,8 +76,9 @@ class CartController extends Controller
     }
   }
   
-  public function hoverCart()
-  {
+  // public function hoverCart()
+  // {
+  //   $cart = \Cart::content()->count();
     
-  }
+  // }
 }
