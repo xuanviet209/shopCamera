@@ -16,4 +16,16 @@ class Coupon extends Model
         'coupon_number',
         'coupon_code',
     ];
+
+    public static function getCouponDb($searchData)
+    {
+        $coupons = self::select("*");
+        if (!empty($searchData["key"]) && $searchData["selectChoose"] == "coupon_name") {
+            $coupons->where('coupon_name', 'like', '%' . $searchData["key"] . '%');
+        }
+        if (!empty($searchData["key"]) && $searchData["selectChoose"] == "coupon_code") {
+            $coupons->where('coupon_code', 'like', '%' . $searchData["key"] . '%');
+        }
+        return $coupons->paginate(config("constant.paginate"));
+    }
 }

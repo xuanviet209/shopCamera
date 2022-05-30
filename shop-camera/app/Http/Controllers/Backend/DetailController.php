@@ -6,16 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DetailController extends Controller
 {
-    // public function printOrder($checkout_code)
-    // {
-    //     $pdf = App::make('dompdf.wrapper');
-    //     $pdf->loadHTML($this->print_order_convert($checkout_code));
-    //     return $pdf->stream();
-    // }
+    public function printOrder($checkout_code)
+    {
+        $pdf = PDF::make('dompdf.wrapper');
+        $pdf->loadHTML($this->print_order_convert($checkout_code));
+        return $pdf->stream();
+    }
     
     public function print_order_convert($checkout_code)
     {

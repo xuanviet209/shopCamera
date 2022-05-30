@@ -23,7 +23,8 @@
                     <th scope="col">Giá</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Ngày mua</th>
-                    <th>123</th>
+                    {{-- <th colspan="2" class="text-center" width="5%">Action</th> --}}
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->product}}</td>
+                        <td><a href="{{ url('/print_order/'.$item->orders_id) }}">In đơn hàng</a></td>
                     </tr>
                 @endforeach
             </tbody>

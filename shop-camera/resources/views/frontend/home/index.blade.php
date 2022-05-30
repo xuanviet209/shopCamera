@@ -236,7 +236,6 @@
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                {{-- <div id="row_compare"></div> --}}
                                                                 <table class="table table-hover" id="row_compare">
                                                                     <thead>
                                                                       <tr>

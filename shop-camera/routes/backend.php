@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\DetailController;
 use App\Http\Controllers\Backend\CommentController;
+use App\Http\Controllers\Backend\AdminController;
 
 
 /*
@@ -94,7 +95,13 @@ Route::prefix('admin')
     
     //Order_detail
     Route::get('order_detail',[DetailController::class,'index'])->name('detail');
-    // Route::get('print_order/{checkout_code}',[DetailController::class,'printOrder']);
+    Route::get('print_order/{checkout_code}',[DetailController::class,'printOrder']);
+    
+    //admin
+    Route::get('admin',[AdminController::class,'index'])->name('admin');
+    Route::get('admin/{slug}/{id}',[AdminController::class, 'edit'])->name('admin.edit');
+    Route::get('admin/not-found',[AdminController::class, 'errorAdmin'])->name('admin.error');
+    Route::post('edit/admin/{id}',[AdminController::class, 'handleEdit'])->name('handle.edit.admin');
 });
 
 Route::prefix('admin')->as('admin.')->group(function () {

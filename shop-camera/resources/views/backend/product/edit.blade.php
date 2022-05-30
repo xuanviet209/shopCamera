@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label> Price </label>
-                    <input class="form-control" name="priceProduct" />
+                    <input class="form-control" value="{{ $infoProduct->price }}"name="priceProduct" />
                 </div>
                 <div class="form-group">
                     <label> Quantity </label>

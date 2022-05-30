@@ -8,7 +8,7 @@
                     Quản lý thống kê sản phẩm
                 </a>
                 <a class="nav-link" href="{{ route('admin.brand') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-copyright"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-tag"></i></div>
                     Quản lý hãng sản phẩm
                 </a>
                 <a class="nav-link" href="{{ route('admin.category') }}">
@@ -20,32 +20,32 @@
                     Quản lý sản phẩm
                 </a>
                 <a class="nav-link" href="{{ route('admin.coupon') }}">
-                    <div class="sb-nav-link-icon"><i class="fab fa-product-hunt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-ticket-alt"></i></div>
                     Mã giảm giá
                 </a>
                 <a class="nav-link" href="{{ route('admin.comment') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                     Bình luận
+                </a>
+                <a class="nav-link" href="{{ route('admin.customer') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Quản lý khách hàng
+                </a>
+                <a class="nav-link" href="{{ route('admin.order') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-cart-arrow-down"></i></div>
+                    Quản lý đặt hàng
+                </a>
+                <a class="nav-link" href="{{ route('admin.detail') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                    Quản lý đơn hàng 
+                </a>
+                <a class="nav-link" href="{{ route('admin.admin') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-lock"></i></div>
+                    Admin
                 </a>
                 <a class="nav-link" href="{{ route('admin.user') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     User
-                </a>
-                <a class="nav-link" href="{{ route('admin.customer') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
-                    Quản lý khách hàng
-                </a>
-                <a class="nav-link" href="{{ route('admin.order') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
-                    Quản lý đặt hàng
-                </a>
-                <a class="nav-link" href="{{ route('admin.detail') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
-                    Quản lý đơn hàng 
-                </a>
-                <a class="nav-link" href="">
-                    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
-                    Setting
                 </a>
     </nav>
 </div>

@@ -14,12 +14,14 @@ use Mail;
 
 class CouponController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $coupons = Coupon::get();
-        return view('backend.coupon.index', [
-            'coupon' => $coupons
-        ]);
+      $searchData["selectChoose"] = $request->choose_select;
+      $searchData["key"] = $request->key ?? "";
+      $coupons = Coupon::getCouponDb($searchData);
+      return view('backend.coupon.index', [
+          'coupon' => $coupons
+      ]);
     }
 
     public function add()

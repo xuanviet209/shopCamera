@@ -12,11 +12,9 @@
       <div class="col-md-12">
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0 pb-3" method="get" action="{{route('admin.product')}}">
       <div class="input-group">
-         <select class="form-control" name="choose_select" id="">
-           <option value="name">Name</option>
-           <option value="">Price</option>
-           <option value="">Quantity</option>
-         </select>
+        <select class="form-control" name="choose_select" id="">
+          <option value="name">Name</option>
+        </select>
           <input class="form-control" type="text" name="result" placeholder="Tìm kiếm ở đây" />
           <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
       </div>
