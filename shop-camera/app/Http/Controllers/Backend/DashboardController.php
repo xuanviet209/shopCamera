@@ -45,10 +45,14 @@ class DashboardController extends Controller
         $category_count=Category::count();
         $user_count=User::count();
         $customer_count=Customer::count();
-        $orders = Order::where('status',1)->get();
         $order_detail_count = OrderDetail::count();
+        $orders = Order::where('status',1)->get();
         if(request()->date_form && request()->date_to){
             $orders = Order::where('status',1)->whereBetween('created_at',[request()->date_form, request()->date_to])->get();
+        }
+        $detail = OrderDetail::get();
+        if(request()->form && request()->to){
+            $detail = Order::whereBetween('created_at',[request()->form, request()->to])->get();
         }
         return view('backend.dashboard.index',compact(
         'product_count',
@@ -57,24 +61,9 @@ class DashboardController extends Controller
         'user_count',
         'customer_count',
         'orders',
-        'order_detail_count'
+        'order_detail_count',
+        'detail'
         ));
 
     }
-    
-    public function test()
-    {
-        return "this is test dashboard";
-    }
-
-    public function demo()
-    {
-        //trong thự mục resource - trong thư mục view
-        //tạo thư mục backend - tạo thư mục dashboard bên trong
-        //tạo file có tên là demo.blade.php đây là template laravel
-        return view('backend.dashboard.demo');
-    }
-    
-
-
 }

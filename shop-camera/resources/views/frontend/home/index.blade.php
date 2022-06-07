@@ -86,7 +86,7 @@
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Products</button>
                             <form class="input-group" action="{{ route('fr.home') }}" method="GET">
-                                <input type="text" name="key" placeholder="What do you need?">
+                                <input type="text" name="key" placeholder="Bạn cần tìm gì">
                                 <button type="submit"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -98,7 +98,7 @@
                                     <span></span>
                                 </a>
                             </li>
-                            <li class="cart-icon"><a href="#">
+                            <li class="cart-icon"><a href="{{ route('fr.cart') }}">
                                     <i class="icon_bag_alt"></i>
                                     <span>{{ \Cart::count() }}</span>
                                 </a>

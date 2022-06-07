@@ -40,9 +40,9 @@ Route::get('home_logout',[HomeController::class,'logout'])->name('home.logout');
 Route::get('home_login',[HomeController::class,'login'])->name('home.login');
 Route::post('home_login',[HomeController::class,'postLogin'])->name('home.login');
 Route::get('show_info',[HomeController::class,'show'])->name('home.show');
-Route::get('admin/{slug}/{id}',[AdminController::class, 'edit'])->name('admin.edit');
-Route::get('admin/not-found',[AdminController::class, 'errorAdmin'])->name('admin.error');
- Route::post('edit/admin/{id}',[AdminController::class, 'handleEdit'])->name('handle.edit.admin');
+// Route::get('admin/{slug}/{id}',[AdminController::class, 'edit'])->name('admin.edit');
+// Route::get('admin/not-found',[AdminController::class, 'errorAdmin'])->name('admin.error');
+// Route::post('edit/admin/{id}',[AdminController::class, 'handleEdit'])->name('handle.edit.admin');
 
 
 Route::post('/load-comment',[HomeController::class,'load_comment']);
