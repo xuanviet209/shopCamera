@@ -86,10 +86,10 @@
                                                 </div>
                                             </td>
                                             <td class="total-price first-row">
-                                                {{ $item->price }}$
+                                                {{ number_format($item->price)}}đ
                                             </td>
                                             <td class="total-price first-row">
-                                                {{ number_format($item->price * $item->qty) }}$
+                                                {{ number_format($item->price * $item->qty) }}đ
                                             </td>
                                             <td class="close-td first-row">
                                                 <a href="{{ route('fr.remove.cart', ['id' => $item->rowId]) }}"
@@ -110,9 +110,9 @@
                             <div class="proceed-checkout">
                                 <ul>
                                     {{-- <li class="subtotal">Subtotal <span>{{ number_format($item->price*$item->qty) }}$</span></li> --}}
-                                    <li class="cart-total">Total <span>{{ \Cart::priceTotal() }}$</span></li>
+                                    <li class="cart-total">Tổng <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal())) }}đ</span></li>
                                 </ul>
-                                <a href="{{route('fr.checkout')}}" class="proceed-btn">CHECK OUT</a>
+                                <a href="{{route('fr.checkout')}}" class="proceed-btn">THANH TOÁN</a>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
     <script src="frontend/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
     
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             $('#update').click(function(e) {
               Swal.fire({
@@ -174,7 +174,7 @@
               });
             });
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>

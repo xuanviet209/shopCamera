@@ -26,9 +26,9 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    {{-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> --}}
 
 
     <!-- Breadcrumb Section Begin -->
@@ -121,10 +121,10 @@
                                                     </div>
                                                 </td>
                                                 <td class="total-price first-row">
-                                                    {{ $item->price }}$
+                                                    {{ number_format($item->price) }}đ
                                                 </td>
                                                 <td class="total-price first-row">
-                                                    {{ number_format($item->price * $item->qty) }}$
+                                                    {{ number_format($item->price * $item->qty) }}đ
                                                 </td>
                                             </form>
                                         </tr>
@@ -149,25 +149,25 @@
                             <div class="col-lg-5">
                                 <div class="proceed-checkout">
                                     <ul>
-                                        <li class="cart-total">Tổng tiền <span>{{ \Cart::priceTotal() }}$</span></li>
+                                        <li class="cart-total">Tổng tiền <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal()))}}đ</span></li>
                                         <li class="cart-total">
                                             @if(Session::get('coupon'))
                                                 @foreach(Session::get('coupon') as $key => $cou)
                                                     @if($cou['coupon_condition'] == 1)
                                                         <li class="cart-total">Mã giảm : <span>{{ $cou['coupon_number'] }} %</span></li>
                                                             @php
-                                                                $total_coupon=(\Cart::priceTotal()*$cou['coupon_number'])/100;
-                                                                echo '<li>Tổng giảm :' .number_format($total_coupon).'$</li>';
+                                                                $total_coupon=(str_replace(',', '',  \Cart::priceTotal())*$cou['coupon_number'])/100;
+                                                                echo '<li class="cart-total">Tổng giảm :'.number_format(str_replace(',', '',$total_coupon)).'đ</li>';
                                                             @endphp
-                                                        <li class="cart-total">Tổng đã giảm : <span>{{ number_format(\Cart::priceTotal()-$total_coupon)}}$</span></li>
+                                                        <li class="cart-total">Tổng đã giảm : <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal())-$total_coupon)}} đ</span></li>
                                                     @elseif($cou['coupon_condition'] == 2)
-                                                        <li class="cart-total">Mã giảm : <span>{{ number_format($cou['coupon_number']) }} $</span></li>
+                                                        <li class="cart-total">Mã giảm : <span>{{ number_format($cou['coupon_number']) }} đ</span></li>
                                                         <p>
                                                             @php
-                                                                $total_coupon=\Cart::priceTotal()-$cou['coupon_number'];
+                                                                $total_coupon=(str_replace(',', '',  \Cart::priceTotal())-$cou['coupon_number']);
                                                             @endphp
                                                         </p>
-                                                        <p><li class="cart-total">Tổng đã giảm : <span>{{ number_format($total_coupon)}}$</span></li></p>
+                                                        <p><li class="cart-total">Tổng đã giảm : <span>{{ number_format($total_coupon)}} đ</span></li></p>
                                                     @endif
                                                 @endforeach
                                             @endif

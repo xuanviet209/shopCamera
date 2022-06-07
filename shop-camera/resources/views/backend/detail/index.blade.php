@@ -20,6 +20,7 @@
                     {{-- <th scope="col">STT</th> --}}
                     <th scope="col">id_Đơn hàng</th>
                     <th scope="col">id_Sản phẩm</th>
+                    <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Ngày mua</th>
@@ -33,10 +34,11 @@
                         {{-- <td>{{ $key + 1 }}</td> --}}
                         <td>{{ $item->orders_id }}</td>
                         <td>{{ $item->products_id }}</td>
-                        <td>{{ $item->price }}</td>
+                        <td>{{ $item->product->name }}</td>
+                        <td>{{ number_format($item->price) }}đ</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->created_at }}</td>
-                        <td><a href="{{ url('/print_order/'.$item->orders_id) }}">In đơn hàng</a></td>
+                        {{-- <td><a href="{{ url('/print_order/'.$item->orders_id) }}">In đơn hàng</a></td> --}}
                     </tr>
                 @endforeach
             </tbody>

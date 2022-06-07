@@ -45,8 +45,14 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="{{ route('admin.login') }}" class="login-panel"><i
-                            class="fa fa-user"></i>Login</a>
+                    @if (Auth::guard('cus')->check())
+                    <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
+                            class="fa fa-user"></i>Logout</a>
+                    <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                    @else
+                        <a href="{{ route('fr.home.login') }}" class="login-panel"><i
+                                class="fa fa-user"></i>Login</a>
+                    @endif
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="frontend/assets/img/flag-1.jpg" data-imagecss="flag yt"
@@ -225,7 +231,7 @@
                                         </a>
                                         <h5>{!! $item->description !!}</h5>
                                         <div class="product-price">
-                                            {{ number_format($item->price) }}$
+                                            {{ number_format($item->price) }}đ
                                         </div>
                                     </div>
                                 </div>

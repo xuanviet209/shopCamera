@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\User;
 use App\Models\Rating;
 use App\Models\Comment;
+use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mail;
@@ -169,5 +170,8 @@ class HomeController extends Controller
     $comment->save();
   }
   
-  
+  public function show()
+  {
+    return view('frontend.home.show');
+  }
 }

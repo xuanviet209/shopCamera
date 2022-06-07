@@ -92,6 +92,7 @@ Route::prefix('admin')
     Route::get('comment',[CommentController::class,'listComment'])->name('comment');
     Route::post('allow-comment',[CommentController::class,'allowComment']);
     Route::post('reply-comment',[CommentController::class,'replyComment']);
+    Route::post('delete-comment',[CommentController::class, 'deleteComment'])->name('delete.comment');
     
     //Order_detail
     Route::get('order_detail',[DetailController::class,'index'])->name('detail');

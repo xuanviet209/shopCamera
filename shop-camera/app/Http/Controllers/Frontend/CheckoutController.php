@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Mail;
 use Carbon\Carbon;
 
@@ -36,6 +37,7 @@ class CheckoutController extends Controller
   public function submitForm(Request $request, Cart $cart)
   {
     // $coupon = Coupon::where('coupon_code')->first();
+    // $coupon = Coupon::first();
     // $coupon->coupon_time = $coupon->coupon_time - 1;
     // $coupon->save();
     $cart = \Cart::content()->toArray(); // lấy ra giỏ hàng
@@ -58,6 +60,9 @@ class CheckoutController extends Controller
           'price' => $price,
           'quantity' => $quantity
         ]);
+        $product = Product::find($products_id);
+        $product->quantity = $product->quantity - $quantity;
+        $product->save();
       }
       Mail::send('frontend.email.order', [
         'order' => $order,

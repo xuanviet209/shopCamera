@@ -8,14 +8,14 @@
 @section('content_app')
   <div class="row">
     <div class="col-xl-12 col-md-12">
-      <h5 id="title_product"> This is products page !</h5>
+      <h5 id="title_product">Sản phẩm</h5>
       <div class="col-md-12">
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0 pb-3" method="get" action="{{route('admin.product')}}">
       <div class="input-group">
         <select class="form-control" name="choose_select" id="">
           <option value="name">Name</option>
         </select>
-          <input class="form-control" type="text" name="result" placeholder="Tìm kiếm ở đây" />
+          <input class="form-control" type="text" name="key" placeholder="Tìm kiếm ở đây" />
           <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
       </div>
     </form>
@@ -47,7 +47,7 @@
               <td>
                   <img class="img-fluid" width="90%" height="90%" src={{ asset('storage/images/'.$item->image) }} />
               </td>
-              <td> {{ $item->price }}</td>
+              <td> {{ number_format($item->price)}}đ</td>
               <td> {{ $item->quantity }}</td>
               <td>
                 <a class="btn btn-info" href="{{ route('admin.product.edit',['slug' => Str::slug($item->name, '-'), 'id' => $item->id]) }}"><i class="fas fa-edit"></i></a>

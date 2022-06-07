@@ -74,7 +74,7 @@ class DashboardController extends Controller
         //tạo file có tên là demo.blade.php đây là template laravel
         return view('backend.dashboard.demo');
     }
-
+    
 
 
 }

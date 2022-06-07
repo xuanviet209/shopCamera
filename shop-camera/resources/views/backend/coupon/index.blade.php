@@ -64,7 +64,7 @@
                                 <?php 
                     }else{
                   ?>
-                                Giảm {{ $item->coupon_number }} $
+                                Giảm {{ number_format($item->coupon_number)}} đ
                                 <?php
                     }
                   ?>

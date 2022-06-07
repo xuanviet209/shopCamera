@@ -49,7 +49,8 @@
                     @if (Auth::guard('cus')->check())
                         <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Logout</a>
-                        <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
                         <a href="{{ route('fr.home.login') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Login</a>
@@ -255,7 +256,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default"
-                                                                    data-dismiss="modal">Close</button>
+                                                                    data-dismiss="modal">Đóng</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -267,8 +268,8 @@
                                             <input type="hidden" id="name_product{{ $item->id }}" value="{{$item->name}}"><h5>{{ $item->name }}</h5>
                                             <input type="hidden" id="desc_product{{ $item->id }}" value="{!! $item->description !!}"><h5>{!! $item->description !!}</h5>
                                             <div class="product-price">
-                                                <input type="hidden" id="price_product{{ $item->id }}" value="{{ number_format($item->price) }} $">
-                                                {{ number_format($item->price) }} $
+                                                <input type="hidden" id="price_product{{ $item->id }}" value="{{ number_format($item->price) }} đ">
+                                                {{ number_format($item->price) }} đ
                                             </div>
                                         </div>
                                     </div>
