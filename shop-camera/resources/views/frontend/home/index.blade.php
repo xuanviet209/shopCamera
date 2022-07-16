@@ -211,11 +211,11 @@
                                             <img id="img_product{{ $item->id }}"class="card-img-top" width="10%" height="10%"
                                                 src="{{ asset('storage/images/' . $item->image) }}" alt="">
                                             <div class="sale pp-sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="icon_heart_alt">
-
-                                                </i>
-                                            </div>
+                                            <i class="icon">
+                                                <button class="icon_heart_alt" id="{{ $item->id }}" onclick="add_wistlist(this.id);">
+                                                    
+                                                </button>
+                                            </i>
                                             <ul>
                                                 <li class="w-icon active"><a
                                                         href="{{ route('fr.detail', ['slug' => $item->slug]) }}"><i
@@ -272,6 +272,16 @@
                                                 {{ number_format($item->price) }} đ
                                             </div>
                                         </div>
+                                        <div>
+                                            <form action="">
+                                                @csrf
+                                                <input type="hidden" id="wishlist_productname{{ $item->id }}" value="{{ $item->name }}">
+                                                <input type="hidden" id="wishlist_productprice{{ $item->id }}" value="{{ number_format($item->price) }} đ">
+                                                <input type="hidden" id="wishlist_productdesc{{ $item->id }}" value="{!! $item->description !!}">
+                                                <img style="display: none;" id="wishlist_img{{ $item->id }}"class="card-img-top" width="10%" height="10%"
+                                                                                src="{{ asset('storage/images/' . $item->image) }}" alt="">
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -283,6 +293,13 @@
         </div>
         </div>
     </section>
+    <div class="container">
+        <p>Sản phẩm yêu thích</p>
+            <div id="row_wishlist">
+                
+            </div>
+    </div>
+        
     <!-- Product Shop Section End -->
 
     <!-- Partner Logo Section Begin -->
@@ -516,6 +533,63 @@
                 document.getElementById("row_compare"+product_id).remove();
             }
         }
+        
+        function view()
+        {
+            if(localStorage.getItem('data')!=null){
+                var data = JSON.parse(localStorage.getItem('data'));
+                
+                data.reverse(); // sản phẩm mới thêm sẽ lên đầu
+                // document.getElementById('row_wishlist').style.overflow = 'scroll';
+                // document.getElementById('row_wishlist').style.height = '200px';
+                for(i=0;i<data.length;i++)
+                {
+                    var name = data[i].name;
+                    var price = data[i].price;
+                    var desc = data[i].desc;
+                    var img = data[i].img;
+                    $("#row_wishlist").append('<div class="row"><div class="col-4"><img width="50%" src="'+img+'"</div><div class="col-4"><p>"'+name+'"</p></div>');
+                }
+            }
+        }
+        view();
+        
+        function add_wistlist(clicked_id)
+        {
+            var id = clicked_id;
+            var name = document.getElementById('wishlist_productname'+id).value;
+            var price = document.getElementById('wishlist_productprice'+id).value;
+            var desc = document.getElementById('wishlist_productdesc'+id).value;
+            var img = document.getElementById('wishlist_img'+id).src;
+            
+            var newItems = {
+                'id':id,
+                'img':img,
+                'name':name,
+                'price':price,
+                'desc':desc
+            }
+            
+            if(localStorage.getItem('data')==null){
+                localStorage.setItem('data','[]');
+            }
+            
+            var old_datas = JSON.parse(localStorage.getItem('data'));
+            
+            //kiểm tra trùng nhau
+            var matches = $.grep(old_datas,function(obj){
+                return obj.id == id;
+            })
+            
+            if(matches.length){
+                alert('Sản phẩm trùng nhau');
+            }else{
+                old_datas.push(newItems);
+                $("#row_wishlist").append('<div class="row"><div class="col-md-4"><img width="50%" src="'+newItems.img+'"</div><div class="col-md-4"><p>"'+newItems.name+'"</p></div>');
+            }
+            localStorage.setItem('data',JSON.stringify(old_datas));
+        }
+        
         
         // hover_cart();
         // function hover_cart(){
