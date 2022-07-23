@@ -31,8 +31,8 @@
                 <div class="form-group">
                     <label>Category</label>
                     <select class="form-control" name="categoryProduct">
-                        @foreach ($categories as $item)
-                            <option value="{{ $item->categories_id }}">{{ $item->categories_id }}</option>
+                        @foreach($categories as $item)
+                            <option value="{{$item->id}}">{{$item->id.'-'.$item->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -40,7 +40,7 @@
                     <label>Brand</label>
                     <select class="form-control" name="brandProduct">
                         @foreach ($brands as $item)
-                            <option value="{{ $item->brands_id }}">{{ $item->brands_id }}</option>
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -62,11 +62,11 @@
                 </div>
                 <div class="form-group">
                     <label> Quantity </label>
-                    <input class="form-control" name="quantityProduct" />
+                    <input class="form-control" value="{{ $infoProduct->quantity }}" name="quantityProduct" />
                 </div>
                 <div class="form-group">
                     <label>Status</label>
-                    <select class="form-control" name="statusBrand">
+                    <select class="form-control" name="statusProduct">
                         <option {{ $infoProduct->status == 1 ? 'selected' : '' }} value="1"> Active </option>
                         <option {{ $infoProduct->status == 0 ? 'selected' : '' }} value="0"> Deactive </option>
                     </select>

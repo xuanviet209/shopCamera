@@ -40,6 +40,7 @@ Route::get('home_logout',[HomeController::class,'logout'])->name('home.logout');
 Route::get('home_login',[HomeController::class,'login'])->name('home.login');
 Route::post('home_login',[HomeController::class,'postLogin'])->name('home.login');
 Route::get('show_info',[HomeController::class,'show'])->name('home.show');
+Route::get('detail_customer',[HomeController::class,'detailCustomer'])->name('home.detailCustomer');
 // Route::get('admin/{slug}/{id}',[AdminController::class, 'edit'])->name('admin.edit');
 // Route::get('admin/not-found',[AdminController::class, 'errorAdmin'])->name('admin.error');
 // Route::post('edit/admin/{id}',[AdminController::class, 'handleEdit'])->name('handle.edit.admin');

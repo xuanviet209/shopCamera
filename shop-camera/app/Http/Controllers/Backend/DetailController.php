@@ -26,7 +26,6 @@ class DetailController extends Controller
     {   
         $listDetail = OrderDetail::paginate(config("constant.paginate"));
         $product = Product::get();
-        // $listDetail = OrderDetail::with('product')->paginate(config("constant.paginate"));
         return view('backend.detail.index',[
             'order_detail' => $listDetail,
             'product' => $product

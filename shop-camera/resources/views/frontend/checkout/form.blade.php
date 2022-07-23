@@ -149,7 +149,7 @@
                             <div class="col-lg-5">
                                 <div class="proceed-checkout">
                                     <ul>
-                                        <li class="cart-total">Tổng tiền <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal()))}}đ</span></li>
+                                        <li class="cart-total">Tổng tiền : <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal()))}}đ</span></li>
                                         <li class="cart-total">
                                             @if(Session::get('coupon'))
                                                 @foreach(Session::get('coupon') as $key => $cou)
@@ -157,7 +157,7 @@
                                                         <li class="cart-total">Mã giảm : <span>{{ $cou['coupon_number'] }} %</span></li>
                                                             @php
                                                                 $total_coupon=(str_replace(',', '',  \Cart::priceTotal())*$cou['coupon_number'])/100;
-                                                                echo '<li class="cart-total">Tổng giảm :'.number_format(str_replace(',', '',$total_coupon)).'đ</li>';
+                                                                echo '<li class="cart-total">Tổng giảm : <span> '.number_format(str_replace(',', '',$total_coupon)).'đ</span></li>';
                                                             @endphp
                                                         <li class="cart-total">Tổng đã giảm : <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal())-$total_coupon)}} đ</span></li>
                                                     @elseif($cou['coupon_condition'] == 2)

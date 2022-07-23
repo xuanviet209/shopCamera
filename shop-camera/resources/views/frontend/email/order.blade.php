@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ $item['name'] }}</td>
                 <td>{{ $item['qty'] }}</td>
-                <td>{{ $item['price'] }}</td>
+                <td>{{ number_format($item['price'])}}đ</td>
                 <td>{{ number_format($item['price'] * $item['qty']) }}đ</td>
             </tr>
         @endforeach

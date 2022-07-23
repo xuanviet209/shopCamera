@@ -89,16 +89,68 @@ class ProductController extends Controller
     if ($infoProducts !== null) {
       // co du lieu theo id
       return view('backend.product.edit', [
-        'infoProduct' => $infoProducts, compact('brands', 'categories')
-      ]);
+        'infoProduct' => $infoProducts, 
+        'brands'=> $brands,
+        'categories'=> $categories
+        ]);
     } else {
       // khong co du lieu
       return view('backend.not_found.product');
     }
   }
-  public function handleEdit()
+  public function handleEdit(Request $request)
   {
-    
+    $nameProduct = $request->input('nameProduct');
+    $slugProduct = $request->input('slugProduct');
+    $descProduct = $request->input('descProduct');
+    $categoryProduct = $request->input('categoryProduct');
+    $brandProduct = $request->input('brandProduct');
+    $quantityProduct = $request->input('quantityProduct');
+    $status = $request->input('statusProduct');
+    $status = $status === '1' ? $status : '0';
+
+    $id = $request->id;
+    $id = is_numeric($id) ? $id : 0;
+    $infoProducts = DB::table('products')->where('id', $id)->first();
+
+    if ($infoProducts === null) {
+      return redirect()->route('admin.product.error');
+    }
+
+    $oldLogo = $infoProducts->image;
+    // upload anh
+    if ($request->hasFile('imageProduct')) {
+      if ($request->file('imageProduct')->isValid()) {
+        // xoa anh cu
+        File::delete('public/storage/images/' . $oldLogo);
+
+        // tien hanh upload
+        $oldLogo = $request->file('imageProduct')->getClientOriginalName();
+        $dateCreate = date('Y-m-d H:i:s');
+        $timeCreate = strtotime($dateCreate);
+        $oldLogo = $timeCreate . '-' . $oldLogo;
+
+        // anh day vao thu muc public
+        $request->file('imageProduct')->move('storage/images', $oldLogo);
+      }
+    }
+    $update = DB::table('products')->where('id', $id)->update([
+      'name' => $nameProduct,
+      'slug' => $slugProduct,
+      'description' => $descProduct,
+      'categories_id' => $categoryProduct,
+      'brands_id' => $brandProduct,
+      'image' => $oldLogo,
+      'quantity'=>$quantityProduct,
+      'status' => $status,
+      'updated_at' => date('Y-m-d H:i:s')
+    ]);
+
+    if ($update) {
+      return redirect()->route('admin.product');
+    } else {
+      return redirect()->route('admin.product.edit', ['slug' => Str::slug($infoProducts->name), 'id' => $id]);
+    }
   }
 
   public function deleteProduct(Request $request)

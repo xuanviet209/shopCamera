@@ -71,7 +71,7 @@ class CheckoutController extends Controller
       ], function ($mail) use ($customerEmail, $customerName) {
         $mail->from('vietd8k11@gmail.com');
         $mail->to($customerEmail, $customerName);
-        $mail->subject('Email Orders');
+        $mail->subject('Đơn hàng của bạn');
       });
       session(['cart' => '']);
       return redirect()->route('fr.checkout.success')->with('success');

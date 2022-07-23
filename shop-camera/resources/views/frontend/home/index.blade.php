@@ -50,19 +50,20 @@
                         <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Logout</a>
                         <a href="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.detailCustomer') }}" class="login-panel"><i>Lịch sử đơn hàng</i></a>
                         <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
                         <a href="{{ route('fr.home.login') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Login</a>
                     @endif
-                    <div class="lan-selector">
+                    {{-- <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="frontend/assets/img/flag-1.jpg" data-imagecss="flag yt"
                                 data-title="English">English</option>
                             <option value='yu' data-image="frontend/assets/img/flag-2.jpg" data-imagecss="flag yu"
                                 data-title="Bangladesh">German </option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter-alt"></i></a>

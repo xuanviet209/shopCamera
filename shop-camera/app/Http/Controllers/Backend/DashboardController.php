@@ -47,6 +47,14 @@ class DashboardController extends Controller
         $customer_count=Customer::count();
         $order_detail_count = OrderDetail::count();
         $orders = Order::where('status',1)->get();
+        $price_orders = OrderDetail::sum('price'); //doanh thu
+        $products= Product::all();
+        $sum = 0; //tổng số tiền bỏ ra
+        foreach($products as $product){
+            $sum += $product->price * $product->quantity;
+        }
+        $price_product = ($sum-$price_orders)-90000000;
+        
         if(request()->date_form && request()->date_to){
             $orders = Order::where('status',1)->whereBetween('created_at',[request()->date_form, request()->date_to])->get();
         }
@@ -62,7 +70,9 @@ class DashboardController extends Controller
         'customer_count',
         'orders',
         'order_detail_count',
-        'detail'
+        'detail',
+        'price_orders',
+        'price_product'
         ));
 
     }

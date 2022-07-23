@@ -9,7 +9,7 @@
           @if($coupon['coupon_condition'] ==1)
             Giảm {{ $coupon['coupon_number'] }}%
           @else
-            Giảm {{ $coupon['coupon_number'] }} $
+            Giảm {{ number_format($coupon['coupon_number']) }} đ
           @endif
             cho tổng đơn hàng đặt mua
         </i>

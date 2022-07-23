@@ -16,7 +16,7 @@
             <table class="table mt-3">
                 <thead>
                     <tr>
-                        <th scope="col">STT</th>
+                        <th scope="col">id_Đơn hàng</th>
                         <th scope="col">id_KH</th>
                         <th scope="col">Tên_KH</th>
                         <th scope="col">Ghi chú</th>
@@ -26,8 +26,8 @@
                 </thead>
                 <tbody>
                     @foreach ($order as $key => $item)
-                        <tr id="rowOrder_{{ $item->id }}">
-                            <td>{{ $key + 1 }}</td>
+                        <tr>
+                            <td>{{ $item->id }}</td>
                             <td>{{ $item->customer_id }}</td>
                             <td>{{ $item->cus->name }}</td>
                             <td>{{ $item->orders_note }}</td>

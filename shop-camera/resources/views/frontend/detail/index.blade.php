@@ -245,21 +245,14 @@
                                 </ul>
                             </div> --}}
                             <p class="product-description">{!! $products->description !!}</p>
-                            <h4 class="price">current price: <span>${{ $products->price }}</span></h4>
+                            <h4 class="price">Giá: <span>{{ number_format($products->price) }}đ</span></h4>
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87
                                     votes)</strong></p>
-                            {{-- <h5 class="sizes">Tính năng:
-                                <span class="size" data-toggle="tooltip" title="small">Chống nước</span>
-                                <span class="size" data-toggle="tooltip" title="medium">Đàm thoại 2 chiều</span>
-                                <span class="size" data-toggle="tooltip" title="large">Xem trực tiếp</span>
-                                <span class="size" data-toggle="tooltip" title="xtra large">Lưu trữ thẻ nhớ</span>
-                            </h5> --}}
-                            {{-- <h5 class="colors">colors:
-                                <span class="color orange not-available" data-toggle="tooltip"
-                                    title="Not In store"></span>
-                                <span class="color green"></span>
-                                <span class="color blue"></span>
-                            </h5> --}}
+                            <select class="form-group" aria-label="Default select example">
+                                <option selected>Phụ kiện đi kèm</option>
+                                <option value="1">Thẻ nhớ</option>
+                                <option value="2">Dây kết nối</option>
+                            </select>
                             <div class="action">
                                 <button class="add-to-cart btn btn-default" type="button"><a
                                         href="{{ route('fr.cart') }}">add to cart</a></button>
