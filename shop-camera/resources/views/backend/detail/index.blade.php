@@ -34,7 +34,7 @@
                         {{-- <td>{{ $key + 1 }}</td> --}}
                         <td>{{ $item->orders_id }}</td>
                         <td>{{ $item->products_id }}</td>
-                        <td>{{ $item->product->name }}</td>
+                        <td>{{ optional($item->product)->name }}</td>
                         <td>{{ number_format($item->price) }}đ</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->created_at }}</td>

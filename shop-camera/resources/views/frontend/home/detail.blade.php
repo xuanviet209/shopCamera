@@ -40,7 +40,7 @@
                     <div class="breadcrumb-text product-more">
                         <a href="{{ route('fr.home') }}"><i class="fa fa-home"></i> Home</a>
                         <a href="./shop.html">Shop</a>
-                        <span>Đăng ký</span>
+                        <span>Sản phẩm đã mua</span>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row">
                 <div class="col-xl-12 col-md-12">
-                    <h1>Đơn hàng đã mua</h1>
+                    <h1>Sản phẩm đã mua</h1>
                     <table class="table mt-3">
                         <thead>
                             <tr>
@@ -68,7 +68,7 @@
                         </thead>
                         <tbody>
                             @if($getOrder->isEmpty())
-                                chưa mua gì
+                                Bạn chưa mua sản phẩm nào
                             @else 
                             @foreach ($getOrder as $key => $item)
                                 <tr>

@@ -61,6 +61,10 @@
                     <input class="form-control" value="{{ $infoProduct->price }}"name="priceProduct" />
                 </div>
                 <div class="form-group">
+                    <label> Price_Cost </label>
+                    <input class="form-control" value="{{ $infoProduct->price_cost }}"name="priceCost" />
+                </div>
+                <div class="form-group">
                     <label> Quantity </label>
                     <input class="form-control" value="{{ $infoProduct->quantity }}" name="quantityProduct" />
                 </div>

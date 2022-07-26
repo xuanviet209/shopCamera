@@ -162,12 +162,10 @@
                                                         <li class="cart-total">Tổng đã giảm : <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal())-$total_coupon)}} đ</span></li>
                                                     @elseif($cou['coupon_condition'] == 2)
                                                         <li class="cart-total">Mã giảm : <span>{{ number_format($cou['coupon_number']) }} đ</span></li>
-                                                        <p>
                                                             @php
                                                                 $total_coupon=(str_replace(',', '',  \Cart::priceTotal())-$cou['coupon_number']);
                                                             @endphp
-                                                        </p>
-                                                        <p><li class="cart-total">Tổng đã giảm : <span>{{ number_format($total_coupon)}} đ</span></li></p>
+                                                        <li class="cart-total">Tổng đã giảm : <span>{{ number_format($total_coupon)}} đ</span></li>
                                                     @endif
                                                 @endforeach
                                             @endif

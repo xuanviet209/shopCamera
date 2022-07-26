@@ -49,12 +49,15 @@ class DashboardController extends Controller
         $orders = Order::where('status',1)->get();
         $price_orders = OrderDetail::sum('price'); //doanh thu
         $products= Product::all();
-        $sum = 0; //tổng số tiền bỏ ra
+        $sum = 0;//tổng số tiền giá gốc
         foreach($products as $product){
-            $sum += $product->price * $product->quantity;
+            $sum += $product->price_cost * $product->quantity;
         }
-        $price_product = ($sum-$price_orders)-90000000;
-        
+        $sumBuy = 0; // tổng số tiền giá bán
+        foreach($products as $product){
+            $sumBuy += $product->price * $product->quantity;
+        }
+        $price_product = $sumBuy-$sum-$price_orders; 
         if(request()->date_form && request()->date_to){
             $orders = Order::where('status',1)->whereBetween('created_at',[request()->date_form, request()->date_to])->get();
         }
@@ -63,16 +66,16 @@ class DashboardController extends Controller
             $detail = Order::whereBetween('created_at',[request()->form, request()->to])->get();
         }
         return view('backend.dashboard.index',compact(
-        'product_count',
-        'brand_count',
-        'category_count',
-        'user_count',
-        'customer_count',
-        'orders',
-        'order_detail_count',
-        'detail',
-        'price_orders',
-        'price_product'
+            'product_count',
+            'brand_count',
+            'category_count',
+            'user_count',
+            'customer_count',
+            'orders',
+            'order_detail_count',
+            'detail',
+            'price_orders',
+            'price_product'
         ));
 
     }

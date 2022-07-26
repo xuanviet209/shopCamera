@@ -36,6 +36,7 @@ class ProductController extends Controller
     $brandProduct = $request->input('brandProduct');
     $descProduct = $request->input('descProduct');
     $priceProduct = $request->input('priceProduct');
+    $price_cost = $request->input('priceCost');
     $quantityProduct = $request->input('quantityProduct');
 
     $pathImage = null;
@@ -65,6 +66,7 @@ class ProductController extends Controller
         'description' => $descProduct,
         'image' => $pathImage,
         'price' => $priceProduct,
+        'price_cost'=> $price_cost,
         'quantity' => $quantityProduct,
         'status' => 1,
         'created_at' => date('Y-m-d H:i:s'),
@@ -105,6 +107,8 @@ class ProductController extends Controller
     $descProduct = $request->input('descProduct');
     $categoryProduct = $request->input('categoryProduct');
     $brandProduct = $request->input('brandProduct');
+    $priceProduct = $request->input('priceProduct');
+    $price_cost = $request->input('priceCost');
     $quantityProduct = $request->input('quantityProduct');
     $status = $request->input('statusProduct');
     $status = $status === '1' ? $status : '0';
@@ -141,6 +145,8 @@ class ProductController extends Controller
       'categories_id' => $categoryProduct,
       'brands_id' => $brandProduct,
       'image' => $oldLogo,
+      'price' => $priceProduct,
+      'price_cost' =>$price_cost,
       'quantity'=>$quantityProduct,
       'status' => $status,
       'updated_at' => date('Y-m-d H:i:s')
