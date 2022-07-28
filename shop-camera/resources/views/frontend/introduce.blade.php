@@ -50,6 +50,8 @@
                         <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Logout</a>
                         <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.detailCustomer') }}" class="login-panel"><i>Lịch sử đơn hàng</i></a>
+                        <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
                         <a href="{{ route('fr.home.login') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Login</a>

@@ -46,19 +46,20 @@
                 </div>
                 <div class="ht-right">
                     @if (Auth::guard('cus')->check())
-                    <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
-                            class="fa fa-user"></i>Logout</a>
-                    <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.logout') }}" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+                        <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.detailCustomer') }}" class="login-panel"><i>Lịch sử đơn hàng</i></a>
+                        <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
                         <a href="{{ route('fr.home.login') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Login</a>
                     @endif
                     <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                        {{-- <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="frontend/assets/img/flag-1.jpg" data-imagecss="flag yt"
                                 data-title="English">English</option>
                             <option value='yu' data-image="frontend/assets/img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
+                                data-title="Bangladesh">German </option> --}}
                         </select>
                     </div>
                     <div class="top-social">
@@ -154,7 +155,7 @@
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="{{ route('fr.home') }}">Trang chủ</a></li>
-                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.about') }}">Hãng Sản phẩm</a></li>
                         <li><a href="{{ route('fr.introduce')}}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.about') }}">Liên Hệ</a></li>
                         <li><a href="{{ route('fr.create') }}">Đăng ký</a></li>

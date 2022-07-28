@@ -47,14 +47,12 @@
                 </div>
                 <div class="ht-right">
                     @if (Auth::guard('cus')->check())
-                        <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
-                                class="fa fa-user"></i>Logout</a>
+                        <a href="{{ route('fr.home.logout') }}" class="login-panel"><i class="fa fa-user"></i>Logout</a>
                         <a href="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
                         <a href="{{ route('fr.home.detailCustomer') }}" class="login-panel"><i>Lịch sử đơn hàng</i></a>
                         <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
-                        <a href="{{ route('fr.home.login') }}" class="login-panel"><i
-                                class="fa fa-user"></i>Login</a>
+                        <a href="{{ route('fr.home.login') }}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     @endif
                     {{-- <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
@@ -155,7 +153,7 @@
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="{{ route('fr.home') }}">Trang chủ</a></li>
-                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.about') }}">Hãng Sản phẩm</a></li>
                         <li><a href="{{ route('fr.introduce') }}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.contact') }}">Liên Hệ</a></li>
                         <li><a href="{{ route('fr.create') }}">Đăng ký</a></li>
@@ -166,7 +164,19 @@
         </div>
     </header>
     <!-- Header End -->
-
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="frontend/assets/img/slide.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="frontend/assets/img/camerabanner1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="frontend/assets/img/camerabanner2.png" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
@@ -209,12 +219,14 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img id="img_product{{ $item->id }}"class="card-img-top" width="10%" height="10%"
+                                            <img id="img_product{{ $item->id }}"class="card-img-top"
+                                                width="10%" height="10%"
                                                 src="{{ asset('storage/images/' . $item->image) }}" alt="">
                                             <div class="sale pp-sale">Sale</div>
                                             <i class="icon">
-                                                <button class="icon_heart_alt" id="{{ $item->id }}" onclick="add_wistlist(this.id);">
-                                                    
+                                                <button class="icon_heart_alt" id="{{ $item->id }}"
+                                                    onclick="add_wistlist(this.id);">
+
                                                 </button>
                                             </i>
                                             <ul>
@@ -233,27 +245,28 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title"><span id="title-compare"></span></h4>
+                                                                <h4 class="modal-title"><span
+                                                                        id="title-compare"></span></h4>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal">&times;</button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <table class="table table-hover" id="row_compare">
                                                                     <thead>
-                                                                      <tr>
-                                                                        <th>Tên sản phẩm</th>
-                                                                        <th>Hình ảnh</th>
-                                                                        <th>Giá</th>
-                                                                        <th>Xóa</th>
-                                                                      </tr>
+                                                                        <tr>
+                                                                            <th>Tên sản phẩm</th>
+                                                                            <th>Hình ảnh</th>
+                                                                            <th>Giá</th>
+                                                                            <th>Xóa</th>
+                                                                        </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        
-                                                                        
-                                                                    
-                                                                    
+
+
+
+
                                                                     </tbody>
-                                                                  </table>
+                                                                </table>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default"
@@ -266,21 +279,32 @@
                                         </div>
                                         <div class="pi-text">
                                             <div class="catagory-name"></div>
-                                            <input type="hidden" id="name_product{{ $item->id }}" value="{{$item->name}}"><h5>{{ $item->name }}</h5>
-                                            <input type="hidden" id="desc_product{{ $item->id }}" value="{!! $item->description !!}"><h5>{!! $item->description !!}</h5>
+                                            <input type="hidden" id="name_product{{ $item->id }}"
+                                                value="{{ $item->name }}">
+                                            <h5>{{ $item->name }}</h5>
+                                            <input type="hidden" id="desc_product{{ $item->id }}"
+                                                value="{!! $item->description !!}">
+                                            <h5>{!! $item->description !!}</h5>
                                             <div class="product-price">
-                                                <input type="hidden" id="price_product{{ $item->id }}" value="{{ number_format($item->price) }} đ">
+                                                <input type="hidden" id="price_product{{ $item->id }}"
+                                                    value="{{ number_format($item->price) }} đ">
                                                 {{ number_format($item->price) }} đ
                                             </div>
                                         </div>
                                         <div>
                                             <form action="">
                                                 @csrf
-                                                <input type="hidden" id="wishlist_productname{{ $item->id }}" value="{{ $item->name }}">
-                                                <input type="hidden" id="wishlist_productprice{{ $item->id }}" value="{{ number_format($item->price) }} đ">
-                                                <input type="hidden" id="wishlist_productdesc{{ $item->id }}" value="{!! $item->description !!}">
-                                                <img style="display: none;" id="wishlist_img{{ $item->id }}"class="card-img-top" width="10%" height="10%"
-                                                                                src="{{ asset('storage/images/' . $item->image) }}" alt="">
+                                                <input type="hidden" id="wishlist_productname{{ $item->id }}"
+                                                    value="{{ $item->name }}">
+                                                <input type="hidden" id="wishlist_productprice{{ $item->id }}"
+                                                    value="{{ number_format($item->price) }} đ">
+                                                <input type="hidden" id="wishlist_productdesc{{ $item->id }}"
+                                                    value="{!! $item->description !!}">
+                                                <img style="display: none;"
+                                                    id="wishlist_img{{ $item->id }}"class="card-img-top"
+                                                    width="10%" height="10%"
+                                                    src="{{ asset('storage/images/' . $item->image) }}"
+                                                    alt="">
                                             </form>
                                         </div>
                                     </div>
@@ -296,11 +320,11 @@
     </section>
     <div class="container">
         <p>Sản phẩm yêu thích</p>
-            <div id="row_wishlist">
-                
-            </div>
+        <div id="row_wishlist">
+
+        </div>
     </div>
-        
+
     <!-- Product Shop Section End -->
 
     <!-- Partner Logo Section Begin -->
@@ -459,139 +483,141 @@
 
     <script type="text/javascript">
         sosanh();
-        function sosanh(){
-            if(localStorage.getItem('compare')!=null);
-                const data = JSON.parse(localStorage.getItem('compare'));
-                for(i=0;i<data.length;i++){
-                    var product_id =data[i].product_id;
-                    var img = data[i].img;
-                    var name = data[i].name;
-                    var price = data[i].price;
-                    $('#row_compare').find('tbody').append(`
-                        <tr id="row_compare`+product_id+`"> 
-                            <td>`+name+`</td>
-                            <td><img width="120px" src="`+img+`"></td>
-                            <td>`+price+`</td>
-                            <td><a style="cursor:pointer" onclick="delete_compare(`+product_id+`)">Xóa so sánh</a></td>
+
+        function sosanh() {
+            if (localStorage.getItem('compare') != null);
+            const data = JSON.parse(localStorage.getItem('compare'));
+            for (i = 0; i < data.length; i++) {
+                var product_id = data[i].product_id;
+                var img = data[i].img;
+                var name = data[i].name;
+                var price = data[i].price;
+                $('#row_compare').find('tbody').append(`
+                        <tr id="row_compare` + product_id + `"> 
+                            <td>` + name + `</td>
+                            <td><img width="120px" src="` + img + `"></td>
+                            <td>` + price + `</td>
+                            <td><a style="cursor:pointer" onclick="delete_compare(` + product_id + `)">Xóa so sánh</a></td>
                         </tr>
                     `);
-                }
+            }
         }
-        
+
         function add_compare(id) {
             document.getElementById('title-compare').innerText = 'So sánh sản phẩm';
             var product_id = id;
-            var img = document.getElementById('img_product'+product_id).src;
-            var name = document.getElementById('name_product'+product_id).value;
-            var price = document.getElementById('price_product'+product_id).value;
-            var desc = document.getElementById('desc_product'+product_id).value;
-            
+            var img = document.getElementById('img_product' + product_id).src;
+            var name = document.getElementById('name_product' + product_id).value;
+            var price = document.getElementById('price_product' + product_id).value;
+            var desc = document.getElementById('desc_product' + product_id).value;
+
             var newItem = {
-                'product_id':product_id,
-                'img':img,
-                'name':name,
-                'price':price,
-                'desc':desc
+                'product_id': product_id,
+                'img': img,
+                'name': name,
+                'price': price,
+                'desc': desc
             }
-            
-            if(localStorage.getItem('compare')==null){
-                localStorage.setItem('compare','[]');
+
+            if (localStorage.getItem('compare') == null) {
+                localStorage.setItem('compare', '[]');
             }
-            
+
             var old_data = JSON.parse(localStorage.getItem('compare'));
-            
-            var matches = $.grep('old_data',function(obj){
+
+            var matches = $.grep('old_data', function(obj) {
                 return obj.product_id == product_id;
             })
-            
-            if(matches.length){
-            
-            }else{
-                if(old_data.length<=3){
+
+            if (matches.length) {
+
+            } else {
+                if (old_data.length <= 3) {
                     old_data.push(newItem);
                     $('#row_compare').find('tbody').append(`
-                                                            <tr id="row_compare`+product_id+`">
-                                                                <td>`+newItem.name+`</td>
-                                                                <td><img width="120px" src="`+newItem.img+`"></td>
-                                                                <td>`+newItem.price+`</td>
-                                                                <td><a style="cursor:pointer" onclick="delete_compare(`+product_id+`)">Xóa so sánh</a></td>
+                                                            <tr id="row_compare` + product_id + `">
+                                                                <td>` + newItem.name + `</td>
+                                                                <td><img width="120px" src="` + newItem.img + `"></td>
+                                                                <td>` + newItem.price +
+                        `</td>
+                                                                <td><a style="cursor:pointer" onclick="delete_compare(` +
+                        product_id + `)">Xóa so sánh</a></td>
                                                             </tr>
                     `);
                 }
             }
-            localStorage.setItem('compare',JSON.stringify(old_data));
+            localStorage.setItem('compare', JSON.stringify(old_data));
             $('#compare').modal();
         }
-        
-        function delete_compare(product_id){
-            if(localStorage.getItem('compare')!=null){
+
+        function delete_compare(product_id) {
+            if (localStorage.getItem('compare') != null) {
                 const data = JSON.parse(localStorage.getItem('compare'));
                 const index = data.findIndex(item => item.product_id === product_id);
                 //tìm vị trí phần từ trong mảng
-                data.splice(index,1); // cắt đi 1
-                localStorage.setItem('compare',JSON.stringify(data));
+                data.splice(index, 1); // cắt đi 1
+                localStorage.setItem('compare', JSON.stringify(data));
                 //remove element by Id
-                document.getElementById("row_compare"+product_id).remove();
+                document.getElementById("row_compare" + product_id).remove();
             }
         }
-        
-        function view()
-        {
-            if(localStorage.getItem('data')!=null){
+
+        function view() {
+            if (localStorage.getItem('data') != null) {
                 var data = JSON.parse(localStorage.getItem('data'));
-                
+
                 data.reverse(); // sản phẩm mới thêm sẽ lên đầu
                 // document.getElementById('row_wishlist').style.overflow = 'scroll';
                 // document.getElementById('row_wishlist').style.height = '200px';
-                for(i=0;i<data.length;i++)
-                {
+                for (i = 0; i < data.length; i++) {
                     var name = data[i].name;
                     var price = data[i].price;
                     var desc = data[i].desc;
                     var img = data[i].img;
-                    $("#row_wishlist").append('<div class="row"><div class="col-4"><img width="50%" src="'+img+'"</div><div class="col-4"><p>"'+name+'"</p></div>');
+                    $("#row_wishlist").append('<div class="row"><div class="col-4"><img width="50%" src="' + img +
+                        '"</div><div class="col-4"><p>"' + name + '"</p></div>');
                 }
             }
         }
         view();
-        
-        function add_wistlist(clicked_id)
-        {
+
+        function add_wistlist(clicked_id) {
             var id = clicked_id;
-            var name = document.getElementById('wishlist_productname'+id).value;
-            var price = document.getElementById('wishlist_productprice'+id).value;
-            var desc = document.getElementById('wishlist_productdesc'+id).value;
-            var img = document.getElementById('wishlist_img'+id).src;
-            
+            var name = document.getElementById('wishlist_productname' + id).value;
+            var price = document.getElementById('wishlist_productprice' + id).value;
+            var desc = document.getElementById('wishlist_productdesc' + id).value;
+            var img = document.getElementById('wishlist_img' + id).src;
+
             var newItems = {
-                'id':id,
-                'img':img,
-                'name':name,
-                'price':price,
-                'desc':desc
+                'id': id,
+                'img': img,
+                'name': name,
+                'price': price,
+                'desc': desc
             }
-            
-            if(localStorage.getItem('data')==null){
-                localStorage.setItem('data','[]');
+
+            if (localStorage.getItem('data') == null) {
+                localStorage.setItem('data', '[]');
             }
-            
+
             var old_datas = JSON.parse(localStorage.getItem('data'));
-            
+
             //kiểm tra trùng nhau
-            var matches = $.grep(old_datas,function(obj){
+            var matches = $.grep(old_datas, function(obj) {
                 return obj.id == id;
             })
-            
-            if(matches.length){
+
+            if (matches.length) {
                 alert('Sản phẩm trùng nhau');
-            }else{
+            } else {
                 old_datas.push(newItems);
-                $("#row_wishlist").append('<div class="row"><div class="col-md-4"><img width="50%" src="'+newItems.img+'"</div><div class="col-md-4"><p>"'+newItems.name+'"</p></div>');
+                $("#row_wishlist").append('<div class="row"><div class="col-md-4"><img width="50%" src="' + newItems.img +
+                    '"</div><div class="col-md-4"><p>"' + newItems.name + '"</p></div>');
             }
-            localStorage.setItem('data',JSON.stringify(old_datas));
+            localStorage.setItem('data', JSON.stringify(old_datas));
         }
-        
-        
+
+
         // hover_cart();
         // function hover_cart(){
         //     $('.cart-hover').click(function(e) {
@@ -654,7 +680,6 @@ border: 1px solid #4CAF50; */
     .pagination li:hover:not(.active) {
         background-color: #ddd;
     }
-
 </style>
 
 </html>

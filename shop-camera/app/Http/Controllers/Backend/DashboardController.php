@@ -63,7 +63,7 @@ class DashboardController extends Controller
         }
         $detail = OrderDetail::get();
         if(request()->form && request()->to){
-            $detail = Order::whereBetween('created_at',[request()->form, request()->to])->get();
+            $detail = OrderDetail::whereBetween('created_at',[request()->form, request()->to])->get();
         }
         return view('backend.dashboard.index',compact(
             'product_count',

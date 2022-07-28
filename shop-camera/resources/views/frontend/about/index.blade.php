@@ -50,6 +50,8 @@
                         <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Logout</a>
                         <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.detailCustomer') }}" class="login-panel"><i>Lịch sử đơn hàng</i></a>
+                        <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
                         <a href="{{ route('fr.home.login') }}" class="login-panel"><i
                                 class="fa fa-user"></i>Login</a>
@@ -153,7 +155,7 @@
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="{{ route('fr.home') }}">Trang chủ</a></li>
-                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.about') }}">Hãng Sản phẩm</a></li>
                         <li><a href="{{ route('fr.introduce') }}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.contact') }}">Liên Hệ</a></li>
                         <li><a href="{{ route('fr.create') }}">Đăng ký</a></li>
@@ -227,11 +229,11 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-9">
                     <div class="row">
-                        @foreach ($products as $key => $item)
+                        @foreach ($brand as $key => $item)
                             <div class="col-12 col-sm-12 col-md-4 ">
                                 <div class="card" style="">
                                     <img id="zoom" class="card-img-top" width="10%" height="10%"
-                                        src="{{ asset('storage/images/' . $item->image) }}" alt="">
+                                        src="{{ asset('storage/images/' . $item->logo) }}" alt="">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <a href="">
@@ -242,7 +244,7 @@
                                         <p class="card-text "></p>
                                     </div>
                                     <div class="card-footer">
-                                        {{ number_format($item->price) }} $
+                                        {!! $item->description !!}
                                     </div>
                                 </div>
                             </div>

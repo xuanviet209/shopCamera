@@ -149,7 +149,7 @@
                 <nav class="nav-menu mobile-menu">
                     <ul>
                         <li><a href="{{route('fr.home')}}">Trang chủ</a></li>
-                        <li><a href="{{ route('fr.about') }}">Sản phẩm</a></li>
+                        <li><a href="{{ route('fr.about') }}">Hãng Sản phẩm</a></li>
                         <li><a href="{{ route('fr.introduce') }}">Giới thiệu</a></li>
                         <li><a href="{{ route('fr.contact') }}">Liên hệ</a></li>
                         <li><a href="{{ route('fr.about') }}">Đăng ký</a></li>
