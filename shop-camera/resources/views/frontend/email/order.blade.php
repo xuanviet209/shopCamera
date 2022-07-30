@@ -28,5 +28,21 @@
         @endforeach
     </tbody>
 </table>
-
-<p>Tổng đơn hàng = {{ number_format(str_replace(',', '',  \Cart::priceTotal())) }} đ</p>
+<p>
+    @foreach(Session::get('coupon') as $key => $cou)
+    @if($cou['coupon_condition'] == 1)
+        <li class="cart-total">Mã giảm : <span>{{ $cou['coupon_number'] }} %</span></li>
+            @php
+                $total_coupon=(str_replace(',', '',  \Cart::priceTotal())*$cou['coupon_number'])/100;
+                echo '<li class="cart-total">Tổng giảm : <span> '.number_format(str_replace(',', '',$total_coupon)).'đ</span></li>';
+            @endphp
+        <li class="cart-total">Tổng đơn hàng : <span>{{ number_format(str_replace(',', '',  \Cart::priceTotal())-$total_coupon)}} đ</span></li>
+    @elseif($cou['coupon_condition'] == 2)
+        <li class="cart-total">Mã giảm : <span>{{ number_format($cou['coupon_number']) }} đ</span></li>
+            @php
+                $total_coupon=(str_replace(',', '',  \Cart::priceTotal())-$cou['coupon_number']);
+            @endphp
+        <li class="cart-total">Tổng đơn hàng : <span>{{ number_format($total_coupon)}} đ</span></li>
+    @endif
+@endforeach
+</p>
