@@ -41,8 +41,8 @@
                         <tr id="rowCoupon_{{ $item->coupon_id }}">
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->coupon_name }}</td>
-                            <td>{{ $item->coupon_code }}</td>
-                            <td>{{ $item->coupon_time }}</td>
+                            <td style="text-align: right">{{ $item->coupon_code }}</td>
+                            <td style="text-align: right">{{ $item->coupon_time }}</td>
                             <td>
                                 <?php 
                   if($item->coupon_condition ==1){
@@ -64,7 +64,7 @@
                                 <?php 
                     }else{
                   ?>
-                                Giảm {{ number_format($item->coupon_number)}} đ
+                                Giảm {{ number_format($item->coupon_number) }} đ
                                 <?php
                     }
                   ?>

@@ -195,7 +195,7 @@
                     <tbody>
                         @foreach ($orders as $od)
                             <tr>
-                                <td>{{ $od->id }}</td>
+                                <td style="text-align: right">{{ $od->id }}</td>
                                 <td>{{ $od->cus->name }}</td>
                                 <td>{{ $od->created_at }}</td>
                             </tr>
@@ -237,11 +237,11 @@
                     <tbody>
                         @foreach ($detail as $key =>$item)
                             <tr>
-                                <td>{{ $item->orders_id }}</td>
+                                <td style="text-align: right">{{ $item->orders_id }}</td>
                                 <td>{{ optional($item->product)->name }}</td> 
-                                <td>{{ number_format($item->price) }}đ</td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>{{  $item->created_at }}</td>
+                                <td style="text-align: right">{{ number_format($item->price) }}đ</td>
+                                <td style="text-align: right">{{ $item->quantity }}</td>
+                                <td style="text-align: right">{{  $item->created_at }}</td>
                             </tr>
                         @endforeach
                     </tbody>

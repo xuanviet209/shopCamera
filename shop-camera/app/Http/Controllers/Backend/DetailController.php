@@ -22,13 +22,13 @@ class DetailController extends Controller
         return $checkout_code;
     }
     
-    public function index()
+    public function index(Request $request)
     {   
-        $listDetail = OrderDetail::paginate(config("constant.paginate"));
-        $product = Product::get();
+        $searchData["selectChoose"] = $request->choose_select;
+        $searchData["key"] = $request->key ?? "";
+        $listDetail = OrderDetail::getDetailDb($searchData);
         return view('backend.detail.index',[
-            'order_detail' => $listDetail,
-            'product' => $product
+            'order_detail' => $listDetail
         ]);
     }
 }

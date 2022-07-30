@@ -168,7 +168,7 @@
                 <div class="col-lg-10">
                     <div class="breadcrumb-text">
                         <a href="{{ route('fr.home') }}"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
+                        <span><a href="{{ route('fr.home.hot') }}">Sản phẩm bán chạy</a></span>
                     </div>
                 </div>
                 <div class="col-lg-2">

@@ -75,7 +75,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->customer_id }}</td>
                                     <td>{{ $item->cus->name }}</td>
-                                    <td>Camera Wifi</td>
+                                    <td>Camera Ebitcam Wifi</td>
                                     <td>{{ $item->created_at }}</td>
                                 </tr>
                             @endforeach

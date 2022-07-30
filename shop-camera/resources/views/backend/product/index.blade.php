@@ -33,6 +33,7 @@
             <th>Price</th>
             <th>Price_Cost</th>
             <th>Quantity</th>
+            <th>Status</th>
             <th colspan="2" class="text-center" width="5%"> Action </th>
           </tr>
         </thead>
@@ -42,15 +43,27 @@
               <td>{{ $key + 1 }}</td>
               <td> {{ $item->name }}</td>
               <td>{{$item->slug}}</td>
-              <td>{{$item->categories_id}}</td>
-              <td>{{$item->brands_id}}</td>
+              <td style="text-align: right">{{$item->categories_id}}</td>
+              <td style="text-align: right">{{$item->brands_id}}</td>
               <td>{!! $item->description !!}</td>
               <td>
                   <img class="img-fluid" width="90%" height="90%" src={{ asset('storage/images/'.$item->image) }} />
               </td>
-              <td> {{ number_format($item->price)}}đ</td>
-              <td>{{ number_format($item->price_cost) }}đ</td>
-              <td> {{ $item->quantity }}</td>
+              <td style="text-align: right"> {{ number_format($item->price)}}đ</td>
+              <td style="text-align: right">{{ number_format($item->price_cost) }}đ</td>
+              <td style="text-align: right"> {{ $item->quantity }}</td>
+              <td><?php 
+                if($item->quantity == 0){
+                    ?>
+                      Hết hàng  
+                    <?php 
+                  }else{
+                    ?>
+                      Còn hàng
+                    <?php
+                  }
+                    ?>
+              </td>
               <td>
                 <a class="btn btn-info" href="{{ route('admin.product.edit',['slug' => Str::slug($item->name, '-'), 'id' => $item->id]) }}"><i class="fas fa-edit"></i></a>
               </td>

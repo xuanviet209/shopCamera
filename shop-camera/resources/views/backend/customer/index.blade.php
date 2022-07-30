@@ -29,7 +29,7 @@
                     @foreach ($customer as $key => $item)
                         <tr id="rowCustomer_{{ $item->id }}">
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->id }}</td>
+                            <td >{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>

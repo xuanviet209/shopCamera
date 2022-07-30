@@ -47,23 +47,21 @@
                 </div>
                 <div class="ht-right">
                     @if (Auth::guard('cus')->check())
-                        <a href="{{ route('fr.home.logout') }}" class="login-panel"><i
-                                class="fa fa-user"></i>Logout</a>
-                        <a href="" title="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
+                        <a href="{{ route('fr.home.logout') }}" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+                        <a href="" class="login-panel"><i>{{ Auth::guard('cus')->user()->name }}</i></a>
                         <a href="{{ route('fr.home.detailCustomer') }}" class="login-panel"><i>Lịch sử đơn hàng</i></a>
                         <a href="{{ route('fr.home.show') }}" class="login-panel"><i>Thông tin khách hàng</i></a>
                     @else
-                        <a href="{{ route('fr.home.login') }}" class="login-panel"><i
-                                class="fa fa-user"></i>Login</a>
+                        <a href="{{ route('fr.home.login') }}" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     @endif
-                    <div class="lan-selector">
+                    {{-- <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="frontend/assets/img/flag-1.jpg" data-imagecss="flag yt"
                                 data-title="English">English</option>
                             <option value='yu' data-image="frontend/assets/img/flag-2.jpg" data-imagecss="flag yu"
                                 data-title="Bangladesh">German </option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="top-social">
                         <a href="#"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -87,7 +85,7 @@
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Products</button>
                             <form class="input-group" action="{{ route('fr.home') }}" method="GET">
-                                <input type="text" name="key" placeholder="What do you need?">
+                                <input type="text" name="key" placeholder="Bạn cần tìm gì">
                                 <button type="submit"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -99,7 +97,7 @@
                                     <span></span>
                                 </a>
                             </li>
-                            <li class="cart-icon"><a href="#">
+                            <li class="cart-icon"><a href="{{ route('fr.cart') }}">
                                     <i class="icon_bag_alt"></i>
                                     <span>{{ \Cart::count() }}</span>
                                 </a>
@@ -108,11 +106,11 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td class="si-pic"><img class="card-img-top" width="30%" height="30%"src="{{ asset('storage/images/'.$products->image) }}" alt=""></td>
+                                                    <td class="si-pic"><img class="card-img-top" width="30%" height="30%" src="" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
-                                                            <p>{{$products->price}}$</p>
-                                                            <h6>{{$products->name}}</h6>
+                                                            <p>1233</p>
+                                                            <h6>22222</h6>
                                                         </div>
                                                     </td>
                                                     <td class="si-close">
@@ -143,13 +141,13 @@
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
                         <span>Danh mục</span>
-                        {{-- <ul class="depart-hover">
+                        <ul class="depart-hover">
                             @foreach ($categories as $key => $item)
                                 <li class="active">
                                     <a href="{{ route('fr.view', ['id' => $item->id]) }}">{{ $item->name }}</a>
                                 </li>
                             @endforeach
-                        </ul> --}}
+                        </ul>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
@@ -166,7 +164,19 @@
         </div>
     </header>
     <!-- Header End -->
-
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="frontend/assets/img/slide.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="frontend/assets/img/camerabanner1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="frontend/assets/img/camerabanner2.png" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
@@ -202,58 +212,119 @@
     <section class="product-shop spad">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-header" style="color: blue">
-                            Danh mục sản phẩm
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            @foreach ($categories as $key => $item)
-                                <li class="list-group-item">{{ $item->name }} 
-                                    <span class="badge badge-pill badge-primary">New</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="card mt-5" style="width: 18rem;">
-                        <div class="card-header" style="color: blue">
-                            Cam kết của chúng tôi
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Chúng tôi chỉ bán hàng chính hãng và đúng giá, vui lòng tham
-                                khảo kỹ trước khi đặt mua.</li>
-                            <li class="list-group-item">Mọi nhu cầu cần giải đáp, vui lòng liên hệ trực tiếp hotline:
-                                0971.046.025</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-9">
-                    <div class="row">
-                        @foreach ($brand as $key => $item)
-                            <div class="col-12 col-sm-12 col-md-4 ">
-                                <div class="card" style="">
-                                    <img id="zoom" class="card-img-top" width="10%" height="10%"
-                                        src="{{ asset('storage/images/' . $item->logo) }}" alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <a href="">
+                <div class="col-lg-12 order-1 order-lg-2">
+                    <div class="product-list">
+                        <div class="row">
+                            @foreach ($hotProducts as $key => $item)
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="pi-pic">
+                                            <img id="img_product{{ $item->id }}"class="card-img-top"
+                                                width="10%" height="10%"
+                                                src="{{ asset('storage/images/' . $item->image) }}" alt="">
+                                            <div class="sale pp-sale">Sale</div>
+                                            <i class="icon">
+                                                <button class="icon_heart_alt" id="{{ $item->id }}"
+                                                    onclick="add_wistlist(this.id);">
 
-                                            </a>
-                                        </h5>
-                                        <p class="card-text font-weight-bold">{{ $item->name }}</p>
-                                        <p class="card-text "></p>
-                                    </div>
-                                    <div class="card-footer">
-                                        {!! $item->description !!}
+                                                </button>
+                                            </i>
+                                            <ul>
+                                                <li class="w-icon active"><a
+                                                        href="{{ route('fr.detail', ['slug' => $item->slug]) }}"><i
+                                                            class="icon_bag_alt"></i></a></li>
+                                                <li class="addcart"><a
+                                                        href="{{ route('fr.add.cart', ['id' => $item->id]) }}">+ Add
+                                                        Cart</a></li>
+                                                <li class="w-icon"><a style="cursor: pointer"
+                                                        onclick="add_compare({{ $item->id }})"><i
+                                                            class="fa fa-random"></i></a></li>
+                                            </ul>
+                                            <div class="col-lg-4 col-sm-6">
+                                                <div class="modal fade" id="compare" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title"><span
+                                                                        id="title-compare"></span></h4>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table class="table table-hover" id="row_compare">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Tên sản phẩm</th>
+                                                                            <th>Hình ảnh</th>
+                                                                            <th>Giá</th>
+                                                                            <th>Xóa</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Đóng</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pi-text">
+                                            <div class="catagory-name"></div>
+                                            <input type="hidden" id="name_product{{ $item->id }}"
+                                                value="{{ $item->name }}">
+                                            <h5>{{ $item->name }}</h5>
+                                            <input type="hidden" id="desc_product{{ $item->id }}"
+                                                value="{!! $item->description !!}">
+                                            <h5>{!! $item->description !!}</h5>
+                                            <div class="product-price">
+                                                <input type="hidden" id="price_product{{ $item->id }}"
+                                                    value="{{ number_format($item->price) }} đ">
+                                                {{ number_format($item->price) }} đ
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <form action="">
+                                                @csrf
+                                                <input type="hidden" id="wishlist_productname{{ $item->id }}"
+                                                    value="{{ $item->name }}">
+                                                <input type="hidden" id="wishlist_productprice{{ $item->id }}"
+                                                    value="{{ number_format($item->price) }} đ">
+                                                <input type="hidden" id="wishlist_productdesc{{ $item->id }}"
+                                                    value="{!! $item->description !!}">
+                                                <img style="display: none;"
+                                                    id="wishlist_img{{ $item->id }}"class="card-img-top"
+                                                    width="10%" height="10%"
+                                                    src="{{ asset('storage/images/' . $item->image) }}"
+                                                    alt="">
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
+            {{-- {{ $products->links() }} --}}
+        </div>
         </div>
     </section>
+    <div class="container">
+        <p>Sản phẩm yêu thích</p>
+        <div id="row_wishlist">
+
+        </div>
+    </div>
+
     <!-- Product Shop Section End -->
 
     <!-- Partner Logo Section Begin -->
@@ -381,6 +452,7 @@
     <script src="frontend/assets/js/owl.carousel.min.js"></script>
     <script src="frontend/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
+
     <div class="zalo-chat-widget" data-oaid="1958423497335534901" data-welcome-message="Rất vui khi được hỗ trợ bạn!"
         data-autopopup="0" data-width="300" data-height="300"></div>
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
@@ -408,21 +480,206 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+        sosanh();
+
+        function sosanh() {
+            if (localStorage.getItem('compare') != null);
+            const data = JSON.parse(localStorage.getItem('compare'));
+            for (i = 0; i < data.length; i++) {
+                var product_id = data[i].product_id;
+                var img = data[i].img;
+                var name = data[i].name;
+                var price = data[i].price;
+                $('#row_compare').find('tbody').append(`
+                        <tr id="row_compare` + product_id + `"> 
+                            <td>` + name + `</td>
+                            <td><img width="120px" src="` + img + `"></td>
+                            <td>` + price + `</td>
+                            <td><a style="cursor:pointer" onclick="delete_compare(` + product_id + `)">Xóa so sánh</a></td>
+                        </tr>
+                    `);
+            }
+        }
+
+        function add_compare(id) {
+            document.getElementById('title-compare').innerText = 'So sánh sản phẩm';
+            var product_id = id;
+            var img = document.getElementById('img_product' + product_id).src;
+            var name = document.getElementById('name_product' + product_id).value;
+            var price = document.getElementById('price_product' + product_id).value;
+            var desc = document.getElementById('desc_product' + product_id).value;
+
+            var newItem = {
+                'product_id': product_id,
+                'img': img,
+                'name': name,
+                'price': price,
+                'desc': desc
+            }
+
+            if (localStorage.getItem('compare') == null) {
+                localStorage.setItem('compare', '[]');
+            }
+
+            var old_data = JSON.parse(localStorage.getItem('compare'));
+
+            var matches = $.grep('old_data', function(obj) {
+                return obj.product_id == product_id;
+            })
+
+            if (matches.length) {
+
+            } else {
+                if (old_data.length <= 3) {
+                    old_data.push(newItem);
+                    $('#row_compare').find('tbody').append(`
+                                                            <tr id="row_compare` + product_id + `">
+                                                                <td>` + newItem.name + `</td>
+                                                                <td><img width="120px" src="` + newItem.img + `"></td>
+                                                                <td>` + newItem.price +
+                        `</td>
+                                                                <td><a style="cursor:pointer" onclick="delete_compare(` +
+                        product_id + `)">Xóa so sánh</a></td>
+                                                            </tr>
+                    `);
+                }
+            }
+            localStorage.setItem('compare', JSON.stringify(old_data));
+            $('#compare').modal();
+        }
+
+        function delete_compare(product_id) {
+            if (localStorage.getItem('compare') != null) {
+                const data = JSON.parse(localStorage.getItem('compare'));
+                const index = data.findIndex(item => item.product_id === product_id);
+                //tìm vị trí phần từ trong mảng
+                data.splice(index, 1); // cắt đi 1
+                localStorage.setItem('compare', JSON.stringify(data));
+                //remove element by Id
+                document.getElementById("row_compare" + product_id).remove();
+            }
+        }
+
+        function view() {
+            if (localStorage.getItem('data') != null) {
+                var data = JSON.parse(localStorage.getItem('data'));
+
+                data.reverse(); // sản phẩm mới thêm sẽ lên đầu
+                // document.getElementById('row_wishlist').style.overflow = 'scroll';
+                // document.getElementById('row_wishlist').style.height = '200px';
+                for (i = 0; i < data.length; i++) {
+                    var name = data[i].name;
+                    var price = data[i].price;
+                    var desc = data[i].desc;
+                    var img = data[i].img;
+                    $("#row_wishlist").append('<div class="row"><div class="col-4"><img width="50%" src="' + img +
+                        '"</div><div class="col-4"><p>"' + name + '"</p></div>');
+                }
+            }
+        }
+        view();
+
+        function add_wistlist(clicked_id) {
+            var id = clicked_id;
+            var name = document.getElementById('wishlist_productname' + id).value;
+            var price = document.getElementById('wishlist_productprice' + id).value;
+            var desc = document.getElementById('wishlist_productdesc' + id).value;
+            var img = document.getElementById('wishlist_img' + id).src;
+
+            var newItems = {
+                'id': id,
+                'img': img,
+                'name': name,
+                'price': price,
+                'desc': desc
+            }
+
+            if (localStorage.getItem('data') == null) {
+                localStorage.setItem('data', '[]');
+            }
+
+            var old_datas = JSON.parse(localStorage.getItem('data'));
+
+            //kiểm tra trùng nhau
+            var matches = $.grep(old_datas, function(obj) {
+                return obj.id == id;
+            })
+
+            if (matches.length) {
+                alert('Sản phẩm trùng nhau');
+            } else {
+                old_datas.push(newItems);
+                $("#row_wishlist").append('<div class="row"><div class="col-md-4"><img width="50%" src="' + newItems.img +
+                    '"</div><div class="col-md-4"><p>"' + newItems.name + '"</p></div>');
+            }
+            localStorage.setItem('data', JSON.stringify(old_datas));
+        }
+
+
+        // hover_cart();
+        // function hover_cart(){
+        //     $('.cart-hover').click(function(e) {
+        //         //    e.preventDefault();
+        //         Swal.fire({
+        //             position: 'center',
+        //             icon: 'success',
+        //             title: 'Sản phẩm đã được thêm vào giỏ hàng',
+        //             showConfirmButton: false,
+        //             timer: 3000
+        //         });
+        //     });
+        // }
+    </script>
 </body>
+<style>
+    .pagination {
+        display: inline-block;
+        margin-top: 10px;
+        float: right
+    }
+
+    .pagination li {
+        width: 36px;
+        display: block;
+        float: left;
+        color: black;
+        padding: 5px 5px;
+        list-style: none;
+        text-decoration: none;
+        transition: background-color .3s;
+        background: #FFF;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 0 4px;
+        cursor: pointer;
+        text-align: center;
+        font: 400 .9em Arial, Helvetica, sans-serif;
+    }
+
+    .pagination li a {
+        color: #333;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .pagination li span {
+        color: #333;
+        font-size: .9em;
+    }
+
+    .pagination li.active {
+        /* background-color: #4CAF50;
+color: white;
+border: 1px solid #4CAF50; */
+    }
+
+    .pagination li:hover:not(.active) {
+        background-color: #ddd;
+    }
+</style>
 
 </html>
-<style>
-    #zoom {
-    transition: all 1s ease;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    }
-    #zoom:hover {
-    transform: scale(1.5,1.5);
-    -webkit-transform: scale(1.5,1.5);
-    -moz-transform: scale(1.5,1.5);
-    -o-transform: scale(1.5,1.5);
-    -ms-transform: scale(1.5,1.5);
-    }
-    </style>

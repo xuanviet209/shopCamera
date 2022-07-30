@@ -43,9 +43,9 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-user-lock"></i></div>
                     Admin
                 </a>
-                <a class="nav-link" href="{{ route('admin.user') }}">
+                {{-- <a class="nav-link" href="{{ route('admin.user') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     User
-                </a>
+                </a> --}}
     </nav>
 </div>

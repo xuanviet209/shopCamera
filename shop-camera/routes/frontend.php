@@ -49,6 +49,7 @@ Route::get('detail_customer',[HomeController::class,'detailCustomer'])->name('ho
 Route::post('/load-comment',[HomeController::class,'load_comment']);
 Route::post('/send-comment',[HomeController::class,'send_comment']);
 
+Route::get('product-hot',[HomeController::class,'getProductHot'])->name('home.hot');
 //checkout
 Route::get('checkout',[CheckoutController::class,'form'])->name('checkout');
 Route::post('checkout',[CheckoutController::class,'submitForm'])->name('checkout');

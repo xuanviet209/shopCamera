@@ -187,4 +187,12 @@ class HomeController extends Controller
         'product' =>$product
       ]);
   }
+  
+  public function getProductHot()
+  {
+    $hotProduct = Product::orderBy('quantity','ASC')->limit(5)->get();
+    return view('frontend.home.hot',[
+      'hotProducts' => $hotProduct
+    ]);
+  }
 }

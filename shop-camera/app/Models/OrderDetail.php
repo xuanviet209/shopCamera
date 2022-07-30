@@ -16,6 +16,15 @@ class OrderDetail extends Model
         'quantity',
     ];
     
+    public static function getDetailDb($searchData)
+    {
+        $details = self::select("*");
+        if (!empty($searchData["key"]) && $searchData["selectChoose"] == "orders_id") {
+            $details->where('orders_id', 'like', '%' . $searchData["key"] . '%');
+        }
+        return $details->paginate(config("constant.paginate"));
+    }
+    
     public function product()
     {
         return $this->belongsTo(Product::class,'products_id','id');
