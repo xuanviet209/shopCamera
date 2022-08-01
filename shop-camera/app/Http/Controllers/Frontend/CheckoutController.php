@@ -61,7 +61,7 @@ class CheckoutController extends Controller
           'quantity' => $quantity
         ]);
         $product = Product::find($products_id);
-        $product->quantity = $product->quantity - $quantity;
+        $product->quantity = $product->quantity - $quantity; //trừ số lượng sản phẩm
         $product->save();
       }
       Mail::send('frontend.email.order', [

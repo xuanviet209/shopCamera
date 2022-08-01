@@ -82,23 +82,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    User</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $user_count }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-user fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
@@ -131,22 +114,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    Doanh thu</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($price_product) }}đ</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-money-bill"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
@@ -154,7 +121,8 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     Doanh thu</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($price_orders) }}đ</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($total) }}đ
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-money-bill"></i>
@@ -164,18 +132,37 @@
                 </div>
             </div>
         </div>
+        <div class="col-12 pt-3">
+            <form action="" class="form-inline" role="form" method="GET">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <input type="date" class="form-control" value="{{ request()->dau ?? '' }}" name="dau">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <input type="date" class="form-control" value="{{ request()->cuoi ?? '' }}" name="cuoi">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary">Lọc</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="col-12">
             <h3>Khách hàng đặt</h3>
             <form action="" class="form-inline" role="form" method="GET">
                 <div class="row">
                     <div class="col-3">
                         <div class="form-group">
-                            <input type="date" class="form-control" name="date_form" >
+                            <input type="date" class="form-control" value="{{ request()->date_form ?? '' }}" name="date_form">
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <input type="date" class="form-control" name="date_to" >
+                            <input type="date" class="form-control" value="{{ request()->date_to ?? '' }}" name="date_to">
                         </div>
                     </div>
                     <div class="col-3">
@@ -210,12 +197,12 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="form-group">
-                            <input type="date" class="form-control" name="form" >
+                            <input type="date" class="form-control" value="{{ request()->form ?? '' }}" name="form">
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <input type="date" class="form-control" name="to" >
+                            <input type="date" class="form-control" value="{{ request()->to ?? '' }}" name="to">
                         </div>
                     </div>
                     <div class="col-3">
@@ -235,13 +222,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($detail as $key =>$item)
+                        @foreach ($detail as $key => $item)
                             <tr>
                                 <td style="text-align: right">{{ $item->orders_id }}</td>
-                                <td>{{ optional($item->product)->name }}</td> 
+                                <td>{{ optional($item->product)->name }}</td>
                                 <td style="text-align: right">{{ number_format($item->price) }}đ</td>
                                 <td style="text-align: right">{{ $item->quantity }}</td>
-                                <td style="text-align: right">{{  $item->created_at }}</td>
+                                <td style="text-align: right">{{ $item->created_at }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -252,12 +239,13 @@
 @endsection
 
 <style>
-.my-custom-scrollbar {
-    position: relative;
-    height: 200px;
-    overflow: auto;
-}
-.table-wrapper-scroll-y {
-    display: block;
-}
+    .my-custom-scrollbar {
+        position: relative;
+        height: 200px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
+    }
 </style>

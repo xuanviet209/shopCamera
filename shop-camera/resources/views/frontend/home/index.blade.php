@@ -461,7 +461,7 @@
         $(document).ready(function() {
             $('#sort').on('change', function() {
                 var url = $(this).val();
-                //alert(url);
+                // alert(url);
                 if (url) {
                     window.location = url;
                 }

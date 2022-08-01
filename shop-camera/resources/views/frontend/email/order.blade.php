@@ -11,10 +11,10 @@
 <table border="1" cellspacing="0" cellpadding="10" width="400">
     <thead>
         <tr>
-            <th class="p-name">Product Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
+            <th class="p-name">Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
         </tr>
     </thead>
     <tbody>
