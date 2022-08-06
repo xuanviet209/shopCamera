@@ -285,6 +285,11 @@
                                             <input type="hidden" id="desc_product{{ $item->id }}"
                                                 value="{!! $item->description !!}">
                                             <h5>{!! $item->description !!}</h5>
+                                            @if($item->quantity == 0)
+                                                <b>Hết hàng</b>
+                                            @else
+                                                <b>Còn hàng</b>
+                                            @endif
                                             <div class="product-price">
                                                 <input type="hidden" id="price_product{{ $item->id }}"
                                                     value="{{ number_format($item->price) }} đ">

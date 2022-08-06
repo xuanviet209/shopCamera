@@ -53,7 +53,7 @@ class CouponController extends Controller
         }
     }
     
-    public function sendCoupon($coupon_time,$coupon_condition,$coupon_number,$coupon_code)
+    public function sendCoupon($coupon_time,$coupon_condition,$coupon_number,$coupon_code,$coupon_id)
     {
       // $customer_vip = Customer::where('customer_vip',1)->get();
       $customer = Customer::get();
@@ -66,16 +66,21 @@ class CouponController extends Controller
       }
       
       $coupon = array(
+        'coupon_id' => $coupon_id,
         'coupon_time' => $coupon_time,
         'coupon_condition'=>$coupon_condition,
         'coupon_number' =>$coupon_number,
         'coupon_code' => $coupon_code
       );
       
+      $coupon = Coupon::find($coupon_id);
+      $coupon->coupon_time = $coupon->coupon_time - 1;
+      $coupon->save();
+      
       Mail::send('backend.email.coupon', ['coupon' =>$coupon], function($message) use ($title_mail,$data)
       {
         $message->to($data['email'])->subject($title_mail);
-        $message->from('vietd8k11@gmail.com');
+        $message->from('admin@gmail.com');
       });
       return redirect()->back()->with('message', 'Gửi mã giảm giá thành công');
     }

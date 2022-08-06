@@ -74,6 +74,7 @@
                                 'coupon_condition' => $item->coupon_condition,
                                 'coupon_number' => $item->coupon_number,
                                 'coupon_code' => $item->coupon_code,
+                                'coupon_id'=> $item->coupon_id,
                             ]) }}"
                                     class="btn btn-primary">Gửi mã</a></td>
                             <td>

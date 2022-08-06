@@ -22,7 +22,7 @@
                         <th scope="col">id_Đơn hàng</th>
                         <th scope="col">id_Sản phẩm</th>
                         <th scope="col">Tên sản phẩm</th>
-                        <th scope="col">Giá</th>
+                        <th scope="col" style="text-align: center">Giá</th>
                         <th scope="col">Số lượng</th>
                         <th scope="col">Ngày mua</th>
                         {{-- <th scope="col">Action</th> --}}
@@ -35,7 +35,7 @@
                             <td>{{ $item->orders_id }}</td>
                             <td style="text-align: center">{{ $item->products_id }}</td>
                             <td>{{ optional($item->product)->name }}</td>
-                            <td>{{ number_format($item->price) }}đ</td>
+                            <td style="text-align: center">{{ number_format($item->price) }}đ</td>
                             <td style="text-align: center">{{ $item->quantity }}</td>
                             <td>{{ $item->created_at }}</td>
                             {{-- <td><a href="{{ url('/print_order/'.$item->orders_id) }}">In đơn hàng</a></td> --}}

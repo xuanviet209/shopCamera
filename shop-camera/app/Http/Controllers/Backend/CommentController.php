@@ -44,7 +44,7 @@ class CommentController extends Controller
             $comment_id = $request->comment_id;
             $comment_id = is_numeric($comment_id) ? $comment_id : 0;
             if ($comment_id > 0) {
-                $del = DB::table('comment')->where('id', $comment_id)->delete();
+                $del = DB::table('comment')->where('comment_id', $comment_id)->delete();
                 if ($del) {
                     return response()->json([
                         'cod' => 200,

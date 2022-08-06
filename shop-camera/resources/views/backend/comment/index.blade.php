@@ -55,7 +55,7 @@
                             <button class="btn btn-success"><i class="fas fa-check"></i></button>
                         </td>
                         <td>
-                            <button id="delete_comment_{{$item->id}}" class="btn btn-danger" onclick="confirm('Bạn có muốn xóa comment này không !');deleteComment({{$item->id}})
+                            <button id="delete_comment_{{$item->comment_id}}" class="btn btn-danger" onclick="confirm('Bạn có muốn xóa comment này không !');deleteComment({{$item->comment_id}})
                             "><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
@@ -121,12 +121,11 @@
     });
 
     function deleteComment(comment_id) {
-        // viet ajax
         $.ajax({
             url: "{{ route('admin.delete.comment') }}",
             type: "POST",
             data: {
-                comment_id
+                comment_id: comment_id
             },
             beforSend: function() {
                 $('#delete_comment_' + comment_id).text('Loading ...');
