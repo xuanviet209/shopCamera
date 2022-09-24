@@ -20,6 +20,7 @@ class AboutController extends Controller
       'category' => $category,
       'products' =>$listProducts,
       'brand' => $brands
+      
     ]);
   }
 }
